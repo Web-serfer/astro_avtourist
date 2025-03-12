@@ -33,21 +33,8 @@ const showAd = false;
     <div class="reklama cursor-pointer py-4 flex justify-center items-center">
       <!-- <Banner /> -->
     </div>
-  )}
-
-  <div id="title" class="flex justify-between items-center mt-4">
-    <p class="date flex items-center">
-      <Icon name="calendar" size={22} />
-      <span class="ml-2 font-semibold text-sm">
-        {formatDate(article.data.pubDate)}
-      </span>
-    </p>
-    <p class="flex items-center gap-2">
-      <Icon name="user" size={20} />
-      <a href={`/about`}> Автоюрист </a>
-    </p>
-  </div>  
-
+  )} 
+  
   <div class="flex items-center justify-center text-center post-title my-6 text-sm md:text-md md:text-lg">
     <span>тема:&nbsp;&nbsp;</span>
     <h1 class="font-bold md:uppercase">
@@ -57,7 +44,7 @@ const showAd = false;
 
   <!-- Изображение статьи -->
   {article.data.image && (
-    <div class="w-full h-[30rem] overflow-hidden my-6 rounded-lg">
+    <div class="w-full h-[30rem] overflow-hidden rounded-lg">
       <Image
         src={article.data.image}
         width={800}
@@ -71,6 +58,18 @@ const showAd = false;
     </div>
   )}
 
+<div id="title" class="flex justify-between items-center">
+  <p class="date flex items-center">
+    <Icon name="calendar" size={22} />
+    <span class="ml-2 font-semibold text-sm">
+      {formatDate(article.data.pubDate)}
+    </span>
+  </p>
+  <p class="flex items-center gap-2">
+    <Icon name="user" size={20} />
+    <a href={`/about`}> Автоюрист </a>
+  </p>
+</div>  
   <Content />
 </ArticleLayout>
 

@@ -1,26 +1,22 @@
-// Создание даты в формате строки
-function formatDate(date: Date): string {
-  const options: Intl.DateTimeFormatOptions = {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  };
-  return date.toLocaleDateString(undefined, options);
-}
+export const formatDate = (date: Date | string): string => {
+  const parsedDate = new Date(date);
+  const day = String(parsedDate.getDate()).padStart(2, "0");
+  const month = String(parsedDate.getMonth() + 1).padStart(2, "0");
+  return `${day}/${month}/${parsedDate.getFullYear()}`;
+};
 
 // Преобразование первой буквы строки в верхний регистр
-function capitalize(str: string): string {
+const capitalize = (str: string): string => {
   if (typeof str !== "string" || str.length === 0) {
     return "";
   }
-  return str.charAt(0).toLowerCase() + str.slice(1);
-}
+  return str.charAt(0).toUpperCase() + str.slice(1);
+};
 
-// ==== Функция текущего года ==== //
-function getCurrentYear() {
+// Функция текущего года
+const getCurrentYear = (): number => {
   const date = new Date();
-  const year = date.getFullYear();
-  return year;
-}
+  return date.getFullYear();
+};
 
-export { formatDate, capitalize, getCurrentYear };
+export default { capitalize, getCurrentYear };

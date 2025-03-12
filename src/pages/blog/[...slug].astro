@@ -46,7 +46,7 @@ const showAd = false;
   {article.data.image && (
     <div class="w-full h-[30rem] overflow-hidden rounded-lg">
       <Image
-        src={article.data.image}
+        src={article.data.image}        
         width={800}
         height={600} 
         loading="eager"
@@ -60,10 +60,10 @@ const showAd = false;
 
 <div id="title" class="flex justify-between items-center">
   <p class="date flex items-center">
-    <Icon name="calendar" size={22} />
-    <span class="ml-2 font-semibold text-sm">
+    <Icon name="calendar" size={22} aria-label="Дата публикации" />
+    <time datetime={article.data.pubDate.toISOString()} class="ml-2 font-semibold text-sm">
       {formatDate(article.data.pubDate)}
-    </span>
+    </time>
   </p>
   <p class="flex items-center gap-2">
     <Icon name="user" size={20} />

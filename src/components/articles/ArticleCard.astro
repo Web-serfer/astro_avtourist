@@ -12,7 +12,7 @@ const { article } = Astro.props;
     {article.data.image && (
       <div class="w-full h-[17rem] overflow-hidden"> 
         <Image
-          src={article.data.image}
+          src={article.data.image}          
           width={400}
           height={200}
           decoding="async"
@@ -48,7 +48,7 @@ const { article } = Astro.props;
     <footer class="p-6 border-t border-[#2c2d2e] flex justify-between items-center">
       <p class="flex items-center gap-2 text-xs text-white">
         <Icon name="calendar" size={20} aria-label="Дата публикации" />
-        <time>
+        <time datetime={article.data.pubDate.toISOString()}>
           {formatDate(article.data.pubDate)}
         </time>
       </p>

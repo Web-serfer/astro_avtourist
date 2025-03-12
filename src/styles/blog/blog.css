@@ -67,14 +67,6 @@ body {
   margin: auto;
 }
 
-h1 {
-  font-size: var(--lg);
-  font-weight: 900;
-  line-height: 1;
-  text-align: center;
-  color: #fff;
-}
-
 a {
   font-weight: 500;
 }

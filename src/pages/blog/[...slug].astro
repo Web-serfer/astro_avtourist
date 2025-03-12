@@ -48,9 +48,9 @@ const showAd = false;
     </p>
   </div>  
 
-  <div class="flex items-center justify-center text-center post-title my-6">
-    <span>Тема:&nbsp;&nbsp;</span>
-    <h1 class="font-bold uppercase text-sm sm:text-lg">
+  <div class="flex items-center justify-center text-center post-title my-6 text-sm md:text-lg">
+    <span>тема:&nbsp;&nbsp;</span>
+    <h1 class="font-bold uppercase">
       {article.data.title}
     </h1>
   </div>
@@ -114,11 +114,7 @@ const showAd = false;
 
   p {
     margin: 1.2rem 0;
-  }
-
-  h1 {
-    font-size: 1.3rem;
-  }
+  }  
 
   h2 {
     font-size: 1.25rem;
@@ -170,30 +166,6 @@ const showAd = false;
     margin: 0.2rem;
   }
 
-  @media (width < 570px) {
-    h1 {
-      font-size: 1.2rem;
-    }
-
-    h2 {
-      font-size: 1.1rem;
-      padding: 1rem 0;
-      text-align: center;
-    }
-
-    h3 {
-      text-align: center;
-      font-size: 1rem;
-    }
-
-    .articles-list p {
-      font-size: 0.9rem;
-    }
-  }
-
-  @media (width < 530px) {
-    h1 {
-      font-size: 1rem;
-    }
-  }
+  
+  
 </style>

@@ -6,7 +6,7 @@ import { formatDate } from '../../utils';
 const { article } = Astro.props;
 ---
 
-<article class="bg-[#1b1c1d] rounded-lg shadow-lg overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-xl">
+<article class="bg-[#1b1c1d] rounded-lg shadow-[0_0_10px_2px_rgba(255,255,255,0.1)] overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-[0_0_15px_4px_rgba(255,255,255,0.2)]">
   <a href={`/blog/${article.slug}`} class="block">
     <!-- Изображение -->
     {article.data.image && (

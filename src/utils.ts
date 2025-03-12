@@ -5,18 +5,14 @@ export const formatDate = (date: Date | string): string => {
   return `${day}/${month}/${parsedDate.getFullYear()}`;
 };
 
-// Преобразование первой буквы строки в верхний регистр
-const capitalize = (str: string): string => {
+export const capitalize = (str: string): string => {
   if (typeof str !== "string" || str.length === 0) {
     return "";
   }
   return str.charAt(0).toUpperCase() + str.slice(1);
 };
 
-// Функция текущего года
-const getCurrentYear = (): number => {
+export const getCurrentYear = (): number => {
   const date = new Date();
   return date.getFullYear();
 };
-
-export default { capitalize, getCurrentYear };

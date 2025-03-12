@@ -1,0 +1,42 @@
+---
+import services from "./data/services.js";
+---
+
+<hr style="width: 80%" />
+<div class="about services">
+  <h3 class="profile_services">Услуги автоюриста Сургута</h3>
+  <div class="box">
+    <ul>
+      {
+        services.map(({ id, href, title }) => (
+          <li key={id}>
+            <a href={href}>{title}</a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</div>
+
+<style>
+  .services {
+    padding-top: 2rem;
+  }
+
+  .profile_services {
+    font-weight: 600;
+  }
+
+  li {
+    padding: .2rem;    
+  }
+
+  a {
+    color: #579dff;
+  }
+
+  a:hover {
+    color: #1677ff;
+    border-bottom: 1px dotted #086fff;
+  }
+</style>

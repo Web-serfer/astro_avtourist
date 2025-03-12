@@ -1,0 +1,28 @@
+---
+import AboutLayout from "@layouts/AboutLayout.astro";
+import LeftSide from "@components/about/leftside/LeftSide.astro";
+import RightSide from "@components/about/rightside/RightSide.astro";
+---
+
+<AboutLayout>
+  <LeftSide />
+  <RightSide /> 
+</AboutLayout>
+
+
+<script>
+  const container = document.querySelector(".container");
+  const left_side = document.querySelector(".left_side");
+  const right_side = document.querySelector(".right_side");
+
+  function checkScreenWidth() {
+    if (window.innerWidth < 768) {
+      container.insertBefore(right_side, left_side);
+    } else {
+      container.appendChild(right_side);
+    }
+  }
+
+  checkScreenWidth();
+  window.addEventListener("resize", checkScreenWidth);
+</script>

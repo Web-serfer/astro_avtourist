@@ -1,0 +1,31 @@
+---
+const {
+  src,
+  alt,  
+  caption = alt, // Если caption не передан, используем alt
+  width = 768, // Значение по умолчанию для width
+  height = 200, // Значение по умолчанию для height
+  loading = "lazy",
+  decoding = "async",
+  counter, // Новый пропс для счетчика
+} = Astro.props;
+
+// Формируем подпись с номером
+const formattedCaption = counter ? `Рис. ${counter}: ${caption}` : caption;
+---
+
+<figure class="image-with-caption">
+  <img
+    src={src}
+    width={width}
+    height={height}
+    loading={loading}
+    decoding={decoding}
+    alt={alt}    
+  />
+  <figcaption>
+    <em>{formattedCaption}</em>
+  </figcaption>
+</figure>
+
+

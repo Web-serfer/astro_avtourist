@@ -1,0 +1,76 @@
+---
+import { Image } from "astro:assets";
+import admin from "@images/home/admin.webp";
+---
+
+<section class="wrapper--hero py-6" class="section">
+  <Image   
+    src={admin}    
+    width={150}
+    height={150}
+    decoding="async"
+    loading="lazy"
+    format="webp"
+    alt="Страница 404"
+    class="admin"
+  />
+  <div>
+    <h1 class="py-10">404.Страница ошибки</h1>
+    <p class="pr-2 text-center">Запрашиваемая страница не найдена</p>
+  </div>
+</section>
+
+<style>
+  .wrapper--hero {
+    display: flex;
+    align-items: center;
+    gap: 3em;
+  }
+
+  @media (max-width: 600px) {
+    .wrapper--hero {
+      display: flex;
+      align-items: center;
+      gap: 1em;
+      flex-direction: column;
+      margin-top: 20px;
+    }
+  }
+
+  .admin {
+    box-sizing: content-box;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+
+  h1 {
+    font-size: 3em;
+    line-height: 0;
+    letter-spacing: 1px;
+    font-weight: bold;
+  }
+
+  @media (max-width: 706px) {
+    h1 {
+      font-size: 2em;
+      text-align: center;
+    }
+
+    p {
+      text-align: center;
+    }
+  }
+
+  @media (max-width: 400px) {
+    h1 {
+      font-size: 1.5em;
+      text-align: center;
+    }
+
+    p {
+      font-size: 0.8em;
+    }
+  }
+</style>

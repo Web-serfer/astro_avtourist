@@ -1,0 +1,24 @@
+---
+import data from './data/experience.jsx';
+---
+
+<hr class="w-4/5 mx-auto" />
+<div class="about max-w-4xl mx-auto px-4 py-8">
+  <h2 class="text-2xl font-semibold mb-8">Юридическая деятельность</h2>
+  {
+    data.map((item, idx) => (
+      <div class="box flex flex-col md:flex-row gap-6 mb-8" key={idx}>
+        <div class="year_company flex flex-col md:w-1/3">
+          <p class="text-lg font-medium mb-2">{item.year}</p>
+          <h3 class="text-xl font-semibold">{item.company}</h3>
+        </div>
+        <div class="text flex-1">
+          <h4 class="text-xl font-semibold mb-2">{item.position}</h4>
+          <p class="text-gray-700 leading-relaxed mb-4">{item.text1}</p>
+          <p class="text-gray-700 leading-relaxed mb-4">{item.text2}</p>
+          <p class="text-gray-700 leading-relaxed mb-8">{item.text3}</p>
+        </div>
+      </div>
+    ))
+  }
+</div>

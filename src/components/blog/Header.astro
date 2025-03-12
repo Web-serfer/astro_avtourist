@@ -1,0 +1,103 @@
+---
+import { Image } from 'astro:assets';
+
+const navLinks = [
+  { url: '/', title: 'Главная' },
+  { url: '/blog', title: 'Блог' },
+  { url: '/documents', title: 'Документы' },
+  { url: '/faq', title: 'FAQ' },
+];
+
+const pathname = new URL(Astro.request.url).pathname;
+const currentPath = pathname === '/' ? '/' : pathname.slice(1);
+---
+
+<header 
+  class="bg-[#18191a] sticky top-0 shadow-[0_2px_10px_rgba(255,255,255,0.2)] relative z-50"
+  style="--scroll-progress: 0%"
+>
+  <div class="max-w-screen-xl mx-auto px-10">
+    <div class="flex items-center justify-between py-3">
+      <!-- Логотип -->
+      <a href="/" class="hidden md:block" aria-label="Логотип Автоюрист Сургут">
+        <Image
+          src="/logo.png"
+          width={50}
+          height={50}
+          alt="Автоюрист Сургут"
+          format="webp"
+          decoding="async"
+          loading="eager"
+          class="hover:opacity-80 transition-opacity"
+        />
+      </a>
+
+      <!-- Навигационное меню -->
+      <nav class="w-full md:w-auto" aria-label="Основная навигация">
+        <ul class="flex justify-center md:justify-end items-center gap-2 sm:gap-6 py-2 sm:py-0 uppercase">
+          {navLinks.map(({ url, title }) => {
+            const isActive = currentPath === url.slice(1);
+            return (
+              <li>
+                <a
+                  href={url}
+                  class={`text-sm md:text-base ${
+                    isActive
+                      ? 'text-[#6482c2] font-medium'
+                      : 'text-[#adb0b1] hover:text-[#6482c2]'
+                  } transition-colors px-2 py-1 sm:px-0 sm:py-0`}
+                  aria-current={isActive ? 'page' : undefined}
+                >
+                  {title}
+                </a>
+              </li>
+            )
+          })}
+        </ul>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Прогресс-бар -->
+  <div 
+    id="scroll-progress"
+    class="absolute bottom-0 h-0.5 bg-white transition-[width] duration-300"
+    style="width: var(--scroll-progress)"
+  ></div>
+</header>
+
+<script is:inline>
+  (function() {
+    const progressBar = document.getElementById('scroll-progress');
+    let isScrolling = false;
+
+    function updateProgress() {
+      const windowHeight = window.innerHeight;
+      const documentHeight = document.documentElement.scrollHeight;
+      const scrollPosition = window.scrollY || document.documentElement.scrollTop;
+
+      const progress = Math.min(
+        (scrollPosition / (documentHeight - windowHeight)) * 100,
+        100
+      );
+
+      progressBar.style.setProperty('--scroll-progress', `${progress}%`);
+      isScrolling = false;
+    }
+
+    function throttleScroll() {
+      if (!isScrolling) {
+        window.requestAnimationFrame(updateProgress);
+        isScrolling = true;
+      }
+    }
+
+    // Инициализация
+    updateProgress();
+    
+    // Обработчики событий
+    window.addEventListener('scroll', throttleScroll);
+    window.addEventListener('resize', updateProgress);
+    document.addEventListener('DOMContentLoaded', updateProgress);
+  })();
+</script>

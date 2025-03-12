@@ -1,0 +1,24 @@
+---
+import { faqs } from '@components/faq/faq.js'
+---
+
+<div class="faq">
+  <h1 class="text-xl font-semibold text-center pb-4 uppercase">
+    Вопрос-ответ (FAQ): помощь автоюриста
+  </h1>
+  <hr class="py-4">    
+    {faqs.map(faq => (
+      <label 
+        for={faq.label}
+        class="rounded-lg"
+      >
+        {faq.number}. {faq.question}
+      </label>
+  <input type="radio" name="panel" id={faq.id} />
+  <div class="collapsible rounded-lg">
+    <p>
+      {faq.answer}
+    </p>
+  </div>
+    ))}    
+</div>

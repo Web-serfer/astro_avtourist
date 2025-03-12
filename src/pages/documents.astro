@@ -1,0 +1,21 @@
+---
+import DocLayout from '@layouts/DocLayout.astro';
+import DocPreview from '@components/docs/DocPreview.astro';
+import { docsData } from '@components/docs/dataDocs';
+---
+
+<DocLayout
+  title = 'Скачать документы || Автоюрист Сургут',
+  description = 'Это страница на которой можно совершенно бесплатно скачивать шаблоны юридических документов',
+  canonical = 'https://avtourist-surgut.ru/documents',
+>
+  <div class="pt-5 px-2 h-screen">
+    <h1 class="text-xl font-semibold text-center py-4 uppercase">
+      Документы для скачивания
+    </h1>
+    <hr />
+    <section class="py-4">
+      {docsData.map((doc) => <DocPreview title={doc.title} href={doc.href} />)}
+    </section>
+  </div>
+</DocLayout>

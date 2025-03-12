@@ -1,0 +1,28 @@
+---
+import '@styles/about/about.css';
+import BaseHead from '@components/home/BaseHead.astro';
+
+export interface Props {
+  title?: string;
+  description?: string;
+  canonical?: string;
+}
+
+const {
+  title = 'Об Автоюристе Сургута',
+  description = 'Услуги автоюриста в Сургуте: консультации, защита прав, помощь в ДТП, юридическая поддержка автовладельцев. Обращайтесь к нам и мы поможем решить ваши проблемы на дороге!',
+  canonical = 'https://avtourist-surgut.ru/about',
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="ru">
+  <head>
+    <BaseHead title={title} description={description} canonical={canonical} />
+  </head>
+  <body>
+    <div class="container">
+      <slot />
+    </div>
+  </body>
+</html>

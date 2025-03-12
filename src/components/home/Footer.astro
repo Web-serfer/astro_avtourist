@@ -1,0 +1,53 @@
+---
+// import banner from '../../images/Banner_ft.jpg'
+import { getCurrentYear } from "../../utils"
+
+---
+
+<footer class="bg-[#18191a] py-2 mt-8">
+  <div class="container max-w-[800px] mx-auto">
+    <span class="year text-[#adb0b1]">
+      2022 - {getCurrentYear} © Автоюрист Сургут
+    </span>
+    <!-- <a 
+      class="ftbanner" 
+      href="#" 
+      target="_blank">
+        <img
+          src={banner}
+          border="0"
+          alt="#"          
+          width="88"
+          height="31"
+        />
+    </a> -->   
+  </div>
+</footer>
+
+<style>
+  footer {
+    box-shadow: var(--shadowBoxTop);
+  }
+
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4rem;
+  }
+
+  @media (width < 550px) {
+    .container {
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .year {
+      order: 2;
+    }
+
+    .ftbanner {
+      order: 1;
+    }
+  }
+</style>

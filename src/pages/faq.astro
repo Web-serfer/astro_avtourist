@@ -1,0 +1,13 @@
+---
+import '@styles/faq/faq.css';
+import FaqLayout from '@layouts/FaqLayout.astro';
+import Accordion from '@components/faq/Accordion.astro';
+---
+
+<FaqLayout
+  title = 'Вопрос-Ответ || Автоюрист Сургут',
+  description = 'Это страница наиболее часто задаваемых вопросов и ответов Автоюристу Сургута',
+  canonical = 'https://avtourist-surgut.ru/faq',
+  >
+  <Accordion />
+</FaqLayout>

@@ -1,0 +1,126 @@
+---
+import { Image } from 'astro:assets';
+import { Icon } from 'astro-icon/components';
+import admin from '@images/home/admin.webp';
+
+const phone = '+79222538375'; // Оставляем только нужную константу
+---
+
+<section class="relative flex flex-col items-center justify-center gap-8 py-8 md:flex-row md:items-center  md:py-6 md:pt-12">
+  <!-- Скрытый заголовок для SEO -->
+  <h1 class="sr-only">Автоюрист в Сургуте - помощь при ДТП, лишении прав, споры с ГИБДД</h1>
+
+  <!-- Изображение с декоративным элементом -->
+  <div class="relative md:flex-shrink-0">
+    <div class="relative w-[150px] h-[150px] rounded-full overflow-hidden">
+      <Image
+        src={admin}
+        width={150}
+        height={150}
+        decoding="async"
+        loading="eager"
+        fetchpriority="high"
+        format="webp"
+        class="w-full h-full object-cover rounded-full border-2 border-white"
+        alt="Автоюрист в Сургуте - консультация и помощь при ДТП"    
+      />
+      <!-- Эффект блика -->
+      <div class="absolute inset-0 rounded-full overflow-hidden">
+        <div class="absolute inset-0 bg-white/10 animate-glow"></div>
+      </div>
+    </div>
+    <!-- Зеленая мигающая точка -->
+    <div class="absolute top-0 -right-[15px] w-3 h-3 bg-green-700 rounded-full animate-ping"></div>
+    <div class="absolute top-0 -right-[15px] w-3 h-3 bg-green-700 rounded-full"></div>
+  </div>
+
+  <!-- Текстовый блок -->
+  <div class="text-center md:text-left">
+    <h2 class="text-2xl sm:text-3xl font-bold leading-tight">
+      <span class="block">Автоюрист в Сургуте</span>     
+    </h2>
+
+    <!-- Номер телефона (виден на md и выше) -->
+    <div class="mt-4 md:mt-2 hidden md:flex items-center gap-2">
+      <Icon name="phone" size={20} class="text-[#6482c2]" />
+      <a
+        href={`tel:${phone}`}
+        class="text-[#6482c2] font-semibold hover:text-[#4a6aa3] transition-colors duration-300"
+      >
+        {phone}
+      </a>
+    </div>
+
+    <!-- Кнопка "Позвонить мне" (видна только на мобильных) -->
+    <a
+      href={`tel:${phone}`}
+      class="mt-4 md:mt-2 px-6 py-3 md:py-2 bg-[#6482c2] text-white font-semibold uppercase rounded-lg hover:bg-[#4a6aa3] transition-colors duration-300 flex items-center gap-2 justify-center md:hidden"
+    >
+      <Icon name="phone" size={20} class="text-white" />
+      <span class="text-white">Позвони мне</span>
+    </a>
+
+    <p class="mt-6 md:mt-4 text-sm sm:text-base max-w-[500px]">
+      Юридическая помощь водителям в Сургуте: оспаривание лишения прав, 
+      сопровождение при ДТП, споры со страховыми компаниями 
+      и решение проблем с ГИБДД.
+    </p>
+  </div>
+
+  <!-- Белая полоска внизу -->
+  <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-[40%] h-[2px] bg-white opacity-50"></div>
+</section>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Автоюрист Сургут",
+  "image": "https://avtourist-surgut.ru/logo.png",
+  "telephone": "+79222538375",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Сургут",
+    "addressRegion": "ХМАО-Югра",
+    "postalCode": "628400",
+    "streetAddress": "ул. Примерная, 123"
+  },
+  "description": "Профессиональная помощь при ДТП, лишении прав и спорах со страховыми компаниями в Сургуте."
+}
+</script>
+
+<style>
+  /* Анимация для мигающей точки */
+  @keyframes ping {
+    0% {
+      transform: scale(0.8);
+      opacity: 0.8;
+    }
+    100% {
+      transform: scale(2);
+      opacity: 0;
+    }
+  }
+  .animate-ping {
+    animation: ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+  }
+
+  /* Анимация для эффекта блика */
+  @keyframes glow {
+    0% {
+      transform: translateX(-100%) rotate(45deg);
+    }
+    100% {
+      transform: translateX(100%) rotate(45deg);
+    }
+  }
+  .animate-glow {
+    animation: glow 5s ease-in-out infinite;    
+    background: linear-gradient(
+      45deg,
+      transparent,
+      rgba(255, 255, 255, 0.5),
+      transparent
+    );
+  }  
+</style>

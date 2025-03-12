@@ -1,0 +1,68 @@
+---
+import { Icon } from 'astro-icon/components';
+---
+
+<div class="contactInfo">
+  <h3 class="title">Контактные данные</h3>
+  <ul>
+    <li>
+      <span class="icon">
+        <Icon name="phone" size={22} />
+      </span>
+      <span class="text">
+        <a href="tel:+79222538375" title="Звонок Автоюристу">
+          +7 922 253 83 75
+        </a>
+      </span>
+    </li>
+    <li>
+      <span class="icon">
+        <Icon name="email" size={22} />
+      </span>
+      <span class="text">cccc80@mail.ru</span>
+    </li>
+    <li>
+      <span class="icon">
+        <Icon name="www" size={22} />
+      </span>
+      <span class="text">avtourist-surgut.ru</span>
+    </li>
+    <li>
+      <span class="icon">
+        <Icon name="youtube" size={26} />
+      </span>
+      <span class="text">
+        <a
+          href="https://youtu.be/A0hW1u1f0wA"
+          title="Перейти на YouTube"
+          target="_blank"
+        >
+          YouTube-Автоюрист
+        </a>
+      </span>
+    </li>
+    <li>
+      <span class="icon">
+        <Icon name="location" size={26} />
+      </span>
+      <span class="text">РФ, ХМАО-Югра, г.Сургут</span>
+    </li>
+  </ul>
+</div>
+
+<style>
+  .contactInfo {
+    padding-bottom: 1rem;
+  }
+
+  li {
+    display: flex;
+    gap: 1rem;
+    padding: 0.3rem 0;
+  }
+
+  a:hover {
+    color: #62c8f7;
+    border-bottom: 1px dotted #62c8f7;
+  }
+</style>

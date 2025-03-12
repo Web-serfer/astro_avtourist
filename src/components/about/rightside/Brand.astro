@@ -1,0 +1,27 @@
+---
+import { Image } from 'astro:assets';
+import brandImg from '@images/home/admin.webp';
+---
+
+<div class="profileText flex flex-col items-center text-center">
+  <div class="imgBx mb-4">
+    <Image
+      src={brandImg}
+      width={200}
+      height={200}
+      format="webp"
+      alt="Автоюрист Сургута"
+      title="Автоюрист Сургута"
+      loading="eager"
+      class="rounded-full shadow-lg"
+    />
+  </div>
+  <h2 class="text-2xl font-semibold mb-4">Автоюрист Сургут</h2>
+  <a
+    href="/"
+    title="На Главную страницу"
+    class="pt-2.5 text-blue-500 hover:text-blue-400 hover:border-b-2 hover:border-dotted hover:border-blue-400 transition-all"
+  >
+    На главную &nbsp;↩️
+  </a>
+</div>

@@ -1,0 +1,65 @@
+---
+import '@styles/blog/blog.css';
+import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+import BlogLayout from '@layouts/BlogLayout.astro';
+import SearchForm from '@components/articles/SearchForm.astro';
+import ArticleCard from '@components/articles/ArticleCard.astro';
+import Pagination from '@components/blog/Pagination.astro';
+import { ARTICLES_PER_PAGE } from '../../consts';
+
+const currentPage: number | null = +Astro.url.searchParams.get('page')! || 1;
+
+// Получение 6-статей блога по дате создания
+const allArticles: CollectionEntry<'blog'>[] = (await getCollection('blog'))
+  .sort(
+    (a: CollectionEntry<'blog'>, b: CollectionEntry<'blog'>) =>
+      b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+  )
+  .slice(0, 6);
+
+const totalPages: number = Math.ceil(allArticles.length / ARTICLES_PER_PAGE);
+
+const articlesForPage: CollectionEntry<'blog'>[] = allArticles.slice(
+  (currentPage - 1) * ARTICLES_PER_PAGE,
+  currentPage * ARTICLES_PER_PAGE
+);
+---
+
+<BlogLayout
+  title="Блог Автоюриста || Автоюрист Сургут"
+  description="Это страница Блога на котором вы можете найти полезные статьи о юридических вопросах."
+  canonical="https://avtourist-surgut.ru/blog"
+>
+  <main>
+    <div class="max-w-7xl mx-auto md:px-4">
+      <!-- Заголовок и форма поиска -->
+      <div class="flex flex-col items-center gap-4 pt-8">
+        <h1 class="text-lg md:text-md text-center sr-only">
+          Юридические статьи
+        </h1>
+        <div class="w-full max-w-md">
+          <SearchForm />
+        </div>
+      </div>
+
+      <!-- Родительский блок с ограничением ширины -->
+      <div class="max-w-7xl mx-auto px-4">
+        <!-- Список статей -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
+          {articlesForPage.map((article) => (
+            <ArticleCard article={article} />
+          ))}
+        </div>
+      </div>
+
+      <!-- Пагинация -->
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        disablePrevious={currentPage === 1}
+        disableNext={currentPage === totalPages}
+      />
+    </div>
+  </main>
+</BlogLayout>

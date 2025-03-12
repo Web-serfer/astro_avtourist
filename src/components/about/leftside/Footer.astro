@@ -1,0 +1,49 @@
+---
+const yearCurrent = new Date();
+---
+<hr style="width: 80%" />
+<footer>
+  <span class="year">2022 - {yearCurrent} © Автоюрист Сургут</span>
+  <!-- <a class="autodengi" href="https://autodengi.com/pr/686527" target="_blank">
+    <img
+      src="https://autodengi.com/faners/ru/88.gif"
+      border="0"
+      alt="Заработок без вложений"
+      title="Заработок без вложений"
+    />
+  </a> -->
+</footer>
+
+<style>
+  footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4rem;
+    font-size: 0.9rem;
+    padding-top: 1.5rem;  
+  }
+
+  /* ======= (Medium Devices) ======= */
+  @media (width > 1024px) {
+    footer {
+      display: none;
+    }
+  }
+
+  @media (width < 550px) {
+    footer {
+      flex-direction: column;
+      gap: 1rem;
+      width: 100%; 
+    }
+
+    .year {
+      order: 2;
+    }
+
+    .autodengi {
+      order: 1;
+    }
+  }
+</style>

@@ -1,0 +1,119 @@
+*,
+*::after,
+*::before {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+input,
+button,
+input::placeholder {
+  font-family: inherit;
+  color: inherit;
+}
+
+:root {
+  /* colors */
+  --hue: 220;
+  --text: var(--hue) 4.8% 28.9%;
+  --accent1: var(--hue) 43.6% 57.5%;
+  --accent2: var(--hue) 71.4% 95.9%;
+  --bkg: var(--hue) 100% 99.6%;
+
+  /* box-shadows */
+  --boxs-sm: 4px 6px 8px hsl(var(--accent1) / 14%),
+    -3px 3px 18px 2px hsl(var(--accent1) / 12%),
+    2px 5px 10px -3px hsl(var(--accent1) / 20%);
+  --boxs-lg: 0px 8px 10px hsl(var(--accent1) / 14%),
+    0px 3px 14px 2px hsl(var(--accent1) / 12%),
+    0px 5px 5px -3px hsl(var(--accent1) / 20%);
+
+  /* sizing */
+  --xlg: 2.369rem;
+  --lg: 1.777rem;
+  --md: 1.333rem;
+  --sm: 1rem;
+  --xsm: 0.75rem;
+
+  /* misc */
+  --radius--sm: 5px;
+  --radius--lg: 15px;
+  --transition: all 160ms cubic-bezier(0.99, 0.03, 0.68, 0.93);
+
+  /* shadow */
+  --shadowBoxBottom: 0px 5px 5px -3px rgba(214, 224, 232, 0.2);
+  --shadowBoxTop: 0px 5px 5px -3px rgba(214, 224, 232, 0.2) inset;
+}
+
+/* ==== Main Styles ==== */
+
+body {
+  background: #131415;
+  color: hsl(var(--text));
+  letter-spacing: 0.04em;
+}
+
+.container {
+  padding: 1em;
+}
+
+.container-body {
+  display: grid;
+  grid-template-rows: auto auto 1fr;
+  gap: var(--sm);
+  max-width: 1400px;
+  margin: auto;
+}
+
+h1 {
+  font-size: var(--lg);
+  font-weight: 900;
+  line-height: 1;
+  text-align: center;
+  color: #fff;
+}
+
+a {
+  font-weight: 500;
+}
+
+small {
+  font-size: var(--xsm);
+}
+
+[type="search"] {
+  -webkit-appearance: none;
+  background-color: hsl(var(--bkg));
+  border-radius: var(--radius--lg);
+  padding: var(--xsm) var(--lg);
+  font-size: var(--xsm);
+  box-shadow: var(--boxs-lg);
+  -webkit-box-shadow: var(--boxs-lg);
+  width: 100%;
+  max-width: 300px;
+  display: block;
+  margin: auto;
+}
+
+[type="search"]::placeholder,
+[type="search"]::-webkit-input-placeholder {
+  font-size: var(--sm);
+  color: hsl(var(--text) / 0.5);
+}
+
+[type="search"]:focus {
+  outline: hsl(var(--accent1) / 0.5) auto 1px;
+}
+
+[type="search"]::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+}
+
+.post-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--xlg);
+  align-items: start;
+}

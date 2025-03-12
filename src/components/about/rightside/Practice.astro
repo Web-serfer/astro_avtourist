@@ -1,0 +1,19 @@
+---
+import practices from "./data/practice.jsx";
+---
+
+<div class="contactInfo education">
+  <h3 class="title">Юридический стаж</h3>
+  <ul>
+    {
+      practices.map((item, idx) => (
+        <li key={idx}>
+          <div class="years">{item.years}</div>
+          <h3>{item.company}</h3>
+        </li>
+      ))
+    }
+  </ul>
+</div>
+
+

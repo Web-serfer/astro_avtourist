@@ -1,0 +1,19 @@
+---
+import { Icon } from 'astro-icon/components';
+const { title, href, alt } = Astro.props;
+---
+
+<div class="card--article-preview">
+  <a href={href} target="_blank" rel="noopener noreferrer" aria-label={alt}>
+    <div class="article-preview__body py-2">
+      <Icon name="docs" size={22} aria-hidden="true" />
+      <p class="docs-title ml-6 italic">
+        {title}
+      </p>
+    </div>
+  </a>
+  <a href={href} target="_blank" rel="noopener noreferrer" aria-label={alt}>
+    <Icon name="download" size={20} title="скачать" aria-hidden="true" />
+    <span class="sr-only">{alt}</span>
+  </a>
+</div>

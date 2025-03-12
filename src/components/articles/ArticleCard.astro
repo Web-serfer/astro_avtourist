@@ -1,0 +1,60 @@
+---
+import { Icon } from 'astro-icon/components';
+import { Image } from 'astro:assets';
+import { formatDate } from '../../utils';
+
+const { article } = Astro.props;
+---
+
+<article class="bg-[#1b1c1d] rounded-lg shadow-lg overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-xl">
+  <a href={`/blog/${article.slug}`} class="block">
+    <!-- Изображение -->
+    {article.data.image && (
+      <div class="w-full h-[17rem] overflow-hidden"> 
+        <Image
+          src={article.data.image}
+          width={400}
+          height={200}
+          decoding="async"
+          loading="lazy"
+          format="webp"
+          class="w-full h-full object-cover object-position-[center_60%]"
+          alt={article.data.title}
+        />
+      </div>
+    )}
+
+    <!-- Заголовок -->
+    <header class="py-2 px-6 bg-[hsl(var(--accent2))]">
+      <h2 class="text-md font-semibold text-[hsl(var(--text))]">
+        {article.data.title}
+      </h2>
+    </header> 
+
+    <!-- Блок с тегами  -->
+    {article.data.tags && (
+      <div class="px-4 py-1 mt-4">
+        <ul class="flex flex-wrap gap-1 md:gap-2">
+          {article.data.tags.map((tag) => (
+            <li key={tag} class="text-[0.65rem] text-[hsl(var(--text))] bg-[hsl(var(--accent1)/0.2)] px-1.5 py-0.5 rounded-md text-white">
+              {tag}
+            </li>
+          ))}
+        </ul>
+      </div>
+    )}
+
+    <!-- Футер -->
+    <footer class="p-6 border-t border-[#2c2d2e] flex justify-between items-center">
+      <p class="flex items-center gap-2 text-sm text-white">
+        <Icon name="calendar" size={20} aria-label="Дата публикации" />
+        <time class="italic">
+          {formatDate(article.data.pubDate)}
+        </time>
+      </p>
+      <span class="bg-[hsl(var(--accent1))] text-[hsl(var(--accent2))] px-4 py-1 rounded-md text-sm font-medium hover:bg-[hsl(var(--accent1)/0.9)] transition-colors">
+        читать далее...
+      </span>
+    </footer>
+  </a>
+</article>

@@ -1,0 +1,41 @@
+---
+const yearCurrent = new Date();
+// import banner from '../../../images/posts/Banner_ft.jpg'
+---
+
+<footer>
+  <!-- <a 
+  class="ftbanner" 
+  href="https://vk.cc/crkBSn" 
+  target="_blank">
+    <img
+      src={banner}
+      border="0"
+      alt="Проект Get Project"          
+      width="88"
+      height="31"
+    />
+  </a> -->
+  <p>2022 - {yearCurrent.getFullYear()} © Автоюрист Сургут</p>
+</footer>
+
+<style>  
+  footer {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    position: absolute;
+    bottom: 10px;
+  }
+
+  /* ======= (Medium Devices) ======= */
+  @media (width < 1024px) {
+    footer {
+      display: none;
+    }
+  }
+  
+</style>
+
+

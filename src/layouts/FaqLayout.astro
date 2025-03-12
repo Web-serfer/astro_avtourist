@@ -1,0 +1,32 @@
+---
+import '@styles/home/main.css';
+import BaseHead from '@components/home/BaseHead.astro';
+import Header from '@components/home/Header.astro';
+import Footer from '@components/home/Footer.astro';
+
+export interface Props {
+  title?: string;
+  description: string;
+  canonical: string;
+}
+
+const {
+  title ,
+  description,
+  canonical,
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="ru">
+  <head>
+    <BaseHead title={title} description={description} canonical={canonical} />
+  </head>
+  <body>
+    <Header />
+    <section class="container">
+      <slot />
+    </section>
+    <Footer />
+  </body>
+</html>

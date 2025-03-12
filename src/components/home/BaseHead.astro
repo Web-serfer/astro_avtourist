@@ -1,0 +1,27 @@
+---
+import { ClientRouter } from 'astro:transitions';
+import Favicons from '@components/home/Favicons.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonical?: string;
+}
+
+const {
+  title = 'Автоюрист в Сургуте: Консультации по ДТП, Защита прав в суде',
+  description = 'Автоюрист в Сургуте: профессиональные консультации по ДТП, защита прав водителей, помощь со страховыми компаниями.',
+  canonical = 'https://avtourist-surgut.ru',
+} = Astro.props;
+---
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- Favicons -->
+<Favicons />
+<!-- Description -->
+<meta name="description" content={description} />
+<!-- Canonical link -->
+<link rel="canonical" href={canonical} />
+<title>{title}</title>
+<ClientRouter />

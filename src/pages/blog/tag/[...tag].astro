@@ -1,0 +1,43 @@
+---
+import "@styles/blog/blog.css";
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+import BlogLayout from "@layouts/BlogLayout.astro";
+import ArticleCard from "@components/articles/ArticleCard.astro";
+
+import { capitalize } from "../../../utils";
+
+const { tag } = Astro.params;
+
+interface Props {
+  article: CollectionEntry<"blog">;
+}
+
+if(tag === undefined) {
+  throw new Error('Tag is required');
+}
+
+// Получение всех статей
+const allArticles: CollectionEntry<'blog'>[] = (await getCollection('blog'))
+  .sort((a:CollectionEntry<'blog'>, b:CollectionEntry<'blog'>) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+// Фильтрация статей по тегу
+const tagArticles = allArticles.filter(article => article.data.tags.includes(tag));
+
+---
+
+
+<BlogLayout title={tag}>
+  <main>
+    <div class="container-body px-4">            
+        <h1 class="pt-6">
+          Статьи по тегу: #{capitalize(tag)}
+        </h1>         
+      <div class="post-container">
+        {
+          tagArticles.map((article) => <ArticleCard article={article} />
+        )}        
+      </div>      
+    </div>
+  </main>
+</BlogLayout>

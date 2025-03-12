@@ -1,0 +1,83 @@
+---
+import { Icon } from 'astro-icon/components';
+import { Image } from 'astro:assets';
+import NewVideo from '@images/home/bg_main.webp';
+
+const YTVideo = 'https://youtu.be/A0hW1u1f0wA';
+---
+
+<section class="section--page new-video pt-2">
+  <div class="new-video-image-border">
+    <a href={YTVideo} target="_blank">
+      <Image
+        src={NewVideo}
+        width={320}
+        height={248}
+        decoding="async"
+        loading="lazy"
+        format="webp"
+        class="new-video-image"
+        alt="Автоюрист Сургут"
+      />
+    </a>
+  </div>
+  <div id="new-video-body">
+    <h3 class="py-2">Автоюрист Сургут</h3>
+    <a href={YTVideo} target="_blank" class="btn btn--md">
+      <Icon name="social-youtube" size={25} />
+      Смотреть на YouTube
+    </a>
+  </div>
+</section>
+
+<style>
+  .new-video {
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    gap: 2em;
+    align-items: center;
+  }
+
+  .new-video-image {
+    display: block;
+    border-radius: 10px;
+    object-fit: cover;
+    cursor: pointer;
+  }
+
+  .new-video-image-border {
+    padding: 3px;
+    margin: 0;
+    line-height: 0;
+    border-radius: 10px;
+    border: 1px solid var(--mainBorderColor);
+  }
+
+  .btn {
+    border: 1px solid var(--mainBorderColor);
+    color: var(--secondaryTextColor);
+    border-radius: 5px;
+    padding: 0.5em 1em;
+    align-items: center;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    width: fit-content;
+    box-shadow: var(--shadowBoxBottom);
+  }
+
+  .btn:hover {
+    border-color: var(--mainLinkColor-light);
+    transition: all 0.5s ease 0s;
+  }
+
+  .btn--md {
+    font-size: 0.9em;
+  }
+
+  @media (max-width: 600px) {
+    .new-video {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

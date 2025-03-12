@@ -1,0 +1,92 @@
+---
+import { Icon } from 'astro-icon/components';
+import BlogLayout from '@layouts/BlogLayout.astro';
+import ArticleCard from '@components/articles/ArticleCard.astro';
+import SearchForm from '@components/articles/SearchForm.astro';
+import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+
+const query: string | null = Astro.url.searchParams.get('query');
+
+const allArticles: CollectionEntry<'blog'>[] = await getCollection('blog');
+
+// Фильтрация статьи на основе запроса
+const searchResults = allArticles.filter((article) => {
+  const titleMatch: boolean = article.data.title
+    .toLowerCase()
+    .includes(query!.toLowerCase());
+
+  const bodyMatch: boolean = article.body
+    .toLowerCase()
+    .includes(query!.toLowerCase());
+
+  const slugMatch: boolean = article.slug
+    .toLowerCase()
+    .includes(query!.toLowerCase());
+
+  return titleMatch || bodyMatch || slugMatch;
+});
+---
+
+<BlogLayout title={`Результаты поиска по запросу - ${query}`}>
+  <main>
+    <SearchForm class="search" />
+    <div class="container-body px-4">
+      {
+        searchResults.length > 0 && (
+          <>
+            <div class="mt-6 mb-8 text-white flex items-center justify-center">
+              <span class="text-xl ">Статьи по запросу: &nbsp;</span>
+              <span class="italic underline text-2xl font-bold">{query}</span>
+            </div>
+          </>
+        )
+      }
+
+      <div class="post-container">
+        {
+          searchResults.length > 0 ? (
+            searchResults.map((article) => <ArticleCard article={article} />)
+          ) : (
+            <div class="flex flex-col items-center justify-center">
+              <p>
+                По запросу - <span>{query}</span> ничего не найдено
+              </p>
+              <a href={`/blog/`} class="btn">
+                <div class="flex items-center gap-2 text-base">
+                  <Icon name="arrowLeft" size={22} class="cursor-pointer" />
+                  Назад к блогу
+                </div>
+              </a>
+            </div>
+          )
+        }
+      </div>
+    </div>
+  </main>
+</BlogLayout>
+
+<style>
+  .container-body {
+    gap: 0;
+  }
+
+  p {
+    text-align: center;
+    color: white;
+    font-size: 1.5rem;
+    font-style: italic;
+    margin: 1.3rem 0;
+  }
+
+  p span {
+    font-weight: bold;
+    font-size: 2rem;
+    text-decoration: underline;
+  }
+
+  .btn {
+    margin: 0.8rem 0 0.9rem 0;
+    padding: 0.5rem 1rem;
+  }
+</style>

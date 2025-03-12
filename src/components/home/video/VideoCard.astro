@@ -1,0 +1,99 @@
+---
+import { Image } from 'astro:assets';
+import adminImg from '@images/home/admin.webp';
+
+const YTVideo =
+  'https://www.youtube.com/watch?v=pgFYEWsCezk&list=PLyUzx0zcVVwzwsqhRr7XnzSa1aRdYBEAa&index=4';
+
+interface Props {
+  href?: string;
+  img?: string;
+  title?: string;
+  subtitle?: string;
+}
+
+const { title } = Astro.props;
+---
+
+<a href={YTVideo} target="_blank">
+  <div class="video-card shadow-white shadow-sm hover:shadow-lg">
+    <div class="video-card__header">
+      <div class="video-avatar__border">
+        <Image
+          src={adminImg}
+          width={60}
+          height={60}
+          decoding="async"
+          loading="lazy"
+          format="webp"
+          class="video-img"
+          alt="Новое видео"
+          title="Новое видео"
+        />
+      </div>
+      <div>
+        <p class="video-name">{title}</p>
+      </div>
+    </div>
+  </div>
+</a>
+
+<style>
+  .video-card {
+    border: 1px solid var(--mainBorderColor);
+    padding: 1em;
+    border-radius: 10px;
+    line-height: 1em;
+  }
+
+  .video-card__header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .video-img {
+    height: 60px;
+    width: 60px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-right: 1em;
+    border: 2px solid var(--mainBorderColor);
+  }
+
+  p {
+    transition: color 0.5s ease-in-out;
+  }
+
+  p:hover {
+    color: var(--mainLinkColor-light);
+  }
+
+  @media (max-width: 537px) {
+    .video-img {
+      margin-right: 0;
+    }
+  }
+
+  .video-name {
+    color: var(--mainTextColor);
+    line-height: 1em;
+  }
+
+  .video-info {
+    font-size: 13px;
+  }
+
+  @media (width < 536px) {
+    .video-card__header {
+      flex-direction: column;
+      align-items: center;
+    }
+    .video-img {
+      margin-bottom: 15px;
+    }
+    .video-name {
+      font-size: 0.9em;
+    }
+  }
+</style>

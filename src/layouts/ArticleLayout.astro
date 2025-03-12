@@ -1,0 +1,46 @@
+---
+import '@styles/home/main.css';
+import '@styles/article/article.css';
+import Favicons from '@components/home/Favicons.astro';
+import Header from '@components/home/Header.astro';
+import Footer from '@components/home/Footer.astro';
+import { getCollection } from 'astro:content'; 
+import { ClientRouter } from 'astro:transitions';
+
+const { slug } = Astro.params;
+
+if (slug === undefined) {
+  throw new Error('Slug is required');
+}
+
+// Получаем все записи из коллекции 'blog'
+const blogEntries = await getCollection('blog');
+
+const entry = blogEntries.find((entry) => entry.slug === slug);
+
+if (!entry) {
+  throw new Error(`Запись с slug "${slug}" не найдена.`);
+}
+
+const { canonical } = Astro.props;
+---
+
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <Favicons />
+    <ClientRouter />
+    <meta name="description" content={entry.data.description} />
+    <link rel="canonical" href={canonical} />
+    <title>{entry.data.title}</title>
+  </head>
+  <body>
+    <Header />
+    <section class="container article--container">
+      <slot />
+    </section>
+    <Footer />
+  </body>
+</html>

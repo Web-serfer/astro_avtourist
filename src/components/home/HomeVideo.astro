@@ -1,0 +1,43 @@
+---
+import { Image } from 'astro:assets';
+import { Icon } from 'astro-icon/components';
+import newVideo from '@images/home/bg_main.webp';
+
+const YTVideo = 'https://youtu.be/A0hW1u1f0wA';
+---
+
+<section class="flex flex-col sm:flex-row items-center gap-6 sm:gap-8 py-6">
+  <!-- Изображение -->
+  <div class="w-full sm:w-1/2 border border-[--mainBorderColor] rounded-lg p-1">
+    <a href={YTVideo} target="_blank">
+      <Image
+        src={newVideo}
+        width={600}
+        height={400}
+        decoding="async"
+        loading="eager"
+        fetchpriority="high"
+        format="webp"
+        class="w-full h-auto rounded-lg cursor-pointer"
+        alt="Автоюрист Сургут"
+        title="Автоюрист Сургут"
+      />
+    </a>
+  </div>
+
+  <!-- Текстовый блок и кнопка -->
+  <div class="w-full sm:w-1/2 text-center sm:text-left">
+    <h2 class="text-2xl sm:text-3xl font-bold underline underline-offset-8 decoration-dotted mb-6">
+      Новое видео
+    </h2>
+
+    <a
+      href={YTVideo}
+      target="_blank"
+      class="inline-flex items-center justify-center gap-2 px-4 py-2 border border-[--mainBorderColor] rounded-lg text-[--secondaryTextColor] hover:text-[--mainLinkColor-light] hover:shadow-lg transition-all duration-300"
+    >
+      <Icon name="social-youtube" size={25} />
+      <span>Смотреть на YouTube</span>
+    </a>
+  </div>
+</section>

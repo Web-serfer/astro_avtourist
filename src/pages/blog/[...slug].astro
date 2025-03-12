@@ -1,8 +1,8 @@
 ---
+import { Image } from 'astro:assets'; 
 import { Icon } from 'astro-icon/components';
 import { formatDate } from '../../utils';
-import { getCollection } from 'astro:content'; // Используем getCollection
-import { Image } from 'astro:assets'; 
+import { getCollection } from 'astro:content'; 
 import ArticleLayout from '@layouts/ArticleLayout.astro';
 
 const { slug } = Astro.params;
@@ -22,12 +22,19 @@ if (article === undefined) {
 }
 
 const { Content } = await article.render();
+
+// Флаг для отображения рекламы (по умолчанию false)
+const showAd = false;
 ---
 
 <ArticleLayout canonical={Astro.url.href}>
-  <div class="reklama cursor-pointer py-4 flex justify-center items-center">
-    <!-- <Banner /> -->
-  </div>
+  <!-- Условный рендеринг блока с рекламой -->
+  {showAd && (
+    <div class="reklama cursor-pointer py-4 flex justify-center items-center">
+      <!-- <Banner /> -->
+    </div>
+  )}
+
   <div id="title" class="flex justify-between items-center mt-4">
     <p class="date flex items-center">
       <Icon name="calendar" size={25} />
@@ -40,6 +47,7 @@ const { Content } = await article.render();
       <a href={`/about`}> Автоюрист </a>
     </p>
   </div>  
+
   <div class="flex items-center justify-center text-center post-title my-6">
     <span>Тема:&nbsp;&nbsp;</span>
     <h1 class="font-bold uppercase text-sm sm:text-lg">
@@ -66,7 +74,7 @@ const { Content } = await article.render();
   <Content />
 </ArticleLayout>
 
-<style is:global>
+<style>
   .tags a {
     font-size: 0.8rem;
     background-color: var(--mainLinkColor-light);

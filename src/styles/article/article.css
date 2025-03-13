@@ -81,12 +81,11 @@ details ol li a:hover {
 /* ===./ конец содержания статьи === */
 
 /* === тело статьи === */
-
 .article-section {
   background-color: var(--contentBgColor);
   border-radius: 8px;
-  padding: 1.5rem;
-  margin-bottom: 1.5rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
 }
 
 /* Убираем отступ у последней секции */
@@ -97,28 +96,28 @@ details ol li a:hover {
 /* Стили для изображений внутри секций */
 .article-section img {
   border-radius: 8px;
-  margin: 1rem 0;
+  margin: 0.75rem 0;
 }
 
 /* Стили для блоков с заметками */
 .zametka {
   background-color: rgba(255, 255, 255, 0.1);
-  padding: 1rem;
-  border-left: 4px solid var(--mainLinkColor-light);
+  padding: 0.75rem;
+  border-left: 3px solid var(--mainLinkColor-light);
   border-radius: 4px;
-  margin: 1rem 0;
+  margin: 0.75rem 0;
 }
 
 /* Стили для таблиц */
 .stat-block table {
   width: 100%;
   border-collapse: collapse;
-  margin: 1rem 0;
+  margin: 0.75rem 0;
 }
 
 .stat-block th,
 .stat-block td {
-  padding: 0.75rem;
+  padding: 0.5rem;
   border: 1px solid var(--mainBorderColor);
   text-align: left;
 }
@@ -127,33 +126,85 @@ details ol li a:hover {
   background-color: rgba(255, 255, 255, 0.05);
 }
 
-/* Стили для кнопки "К началу" */
-.ArrowTop {
-  display: inline-block;
-  margin-top: 1.5rem;
-  color: var(--mainLinkColor-light);
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.ArrowTop:hover {
-  text-decoration: underline;
-}
-
 /* Стили для списка других статей */
 .articles-list {
-  margin-top: 1.5rem;
+  margin-top: 1rem;
 }
 
 .articles-list a {
   color: var(--mainLinkColor-light);
   text-decoration: none;
   display: block;
-  margin: 0.5rem 0;
+  margin: 0.25rem 0;
 }
 
 .articles-list a:hover {
   text-decoration: underline;
+}
+
+/* Заголовки h2 */
+h2 {
+  margin: 0.5rem 0 1rem 0;
+  text-align: center;
+  background-color: white;
+  color: black;
+  padding: 0.5rem;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 1.25rem;
+}
+
+/* Параграфы */
+p {
+  margin: 0.75rem 0;
+  font-size: 0.9rem;
+}
+
+/* Изображения с подписями */
+figure {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1rem 0;
+}
+
+figcaption {
+  text-align: center;
+  font-style: italic;
+  margin-top: 0.25rem;
+  font-weight: 500;
+  font-size: 0.8rem;
+}
+
+/* Медиа-запрос для мобильных устройств */
+@media (max-width: 640px) {
+  .article-section {
+    padding: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  h2 {
+    font-size: 0.9rem;
+    padding: 0.4rem;
+  }
+
+  p {
+    font-size: 0.85rem;
+  }
+
+  .zametka {
+    padding: 0.5rem;
+    border-left-width: 2px;
+  }
+
+  .stat-block th,
+  .stat-block td {
+    padding: 0.4rem;
+  }
+
+  .articles-list a {
+    font-size: 0.85rem;
+  }
 }
 
 /* === ./ тело статьи === */

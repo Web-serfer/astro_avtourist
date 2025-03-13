@@ -166,6 +166,14 @@ details {
   border-radius: 8px;
   padding: 1rem;
   background-color: var(--contentBgColor);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Сброс стилей для hr */
+hr {
+  display: none;
 }
 
 details summary {
@@ -177,6 +185,8 @@ details summary {
   list-style: none;
   position: relative;
   padding: 0.5rem 0;
+  margin: 0;
+  text-transform: uppercase;
 }
 
 /* Убираем стандартный маркер в Safari */
@@ -205,14 +215,16 @@ details ol {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  padding-left: 2rem;
-  border: none;
+  padding-left: 0;
+  width: fit-content;
 }
 
 /* Стили для пунктов списка */
 details ol li {
   list-style-type: decimal;
   margin: 0;
+  padding: 0;
+  text-align: left;
 }
 
 /* Стили для ссылок в списке */
@@ -224,6 +236,7 @@ details ol li a {
 
 /* Эффект при наведении на ссылки */
 details ol li a:hover {
-  color: color-mix(in srgb, var(--mainLinkColor-light), white 30%);
-  /* text-decoration: underline; */
+  color: var(--mainLinkColor-light);
 }
+
+/* ===== тело статьи === */

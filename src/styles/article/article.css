@@ -1,0 +1,80 @@
+/* Стили для секций статьи */
+.article-section {
+  background-color: var(--contentBgColor); /* Фон как у блока содержания */
+  border: 1px solid var(--mainBorderColor); /* Граница */
+  border-radius: 8px; /* Скругленные углы */
+  padding: 1.5rem; /* Внутренние отступы */
+  margin-bottom: 1.5rem; /* Отступ между секциями */
+}
+
+/* Убираем отступ у последней секции */
+.article-section:last-child {
+  margin-bottom: 0;
+}
+
+/* Стили для изображений внутри секций */
+.article-section img {
+  border-radius: 8px; /* Скругленные углы для изображений */
+  margin: 1rem 0; /* Отступы вокруг изображений */
+}
+
+/* Стили для блоков с заметками */
+.zametka {
+  background-color: rgba(255, 255, 255, 0.1); /* Легкий фон для заметок */
+  padding: 1rem;
+  border-left: 4px solid var(--mainLinkColor-light); /* Акцентная линия слева */
+  border-radius: 4px;
+  margin: 1rem 0;
+}
+
+/* Стили для таблиц */
+.stat-block table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+}
+
+.stat-block th,
+.stat-block td {
+  padding: 0.75rem;
+  border: 1px solid var(--mainBorderColor);
+  text-align: left;
+}
+
+.stat-block th {
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.05
+  ); /* Легкий фон для заголовков таблицы */
+}
+
+/* Стили для кнопки "К началу" */
+.ArrowTop {
+  display: inline-block;
+  margin-top: 1.5rem;
+  color: var(--mainLinkColor-light);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.ArrowTop:hover {
+  text-decoration: underline;
+}
+
+/* Стили для списка других статей */
+.articles-list {
+  margin-top: 1.5rem;
+}
+
+.articles-list a {
+  color: var(--mainLinkColor-light);
+  text-decoration: none;
+  display: block;
+  margin: 0.5rem 0;
+}
+
+.articles-list a:hover {
+  text-decoration: underline;
+}

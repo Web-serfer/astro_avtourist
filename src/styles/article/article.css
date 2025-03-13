@@ -54,8 +54,10 @@ details ol {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  padding-left: 0;
-  width: fit-content;
+  padding-left: 1rem; /* Добавлен паддинг слева */
+  padding-right: 1rem; /* Добавлен паддинг справа */
+  width: 100%; /* Занимает всю ширину родителя */
+  box-sizing: border-box; /* Учитываем паддинги в ширине */
 }
 
 /* Стили для пунктов списка */

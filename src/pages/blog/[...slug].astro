@@ -1,8 +1,8 @@
 ---
-import { Image } from 'astro:assets'; 
+import { Image } from 'astro:assets';
 import { Icon } from 'astro-icon/components';
 import { formatDate } from '../../utils';
-import { getCollection } from 'astro:content'; 
+import { getCollection } from 'astro:content';
 import ArticleLayout from '@layouts/ArticleLayout.astro';
 
 const { slug } = Astro.params;
@@ -11,10 +11,7 @@ if (slug === undefined) {
   throw new Error('Slug is required');
 }
 
-// Получаем все записи из коллекции 'blog'
 const blogEntries = await getCollection('blog');
-
-// Находим запись по slug
 const article = blogEntries.find((entry) => entry.slug === slug);
 
 if (article === undefined) {
@@ -22,19 +19,16 @@ if (article === undefined) {
 }
 
 const { Content } = await article.render();
-
-// Флаг для отображения рекламы (по умолчанию false)
 const showAd = false;
 ---
 
 <ArticleLayout canonical={Astro.url.href}>
-  <!-- Условный рендеринг блока с рекламой -->
   {showAd && (
     <div class="reklama cursor-pointer py-4 flex justify-center items-center">
-      <!-- <Banner /> -->
+      {/* <Banner /> */}
     </div>
-  )} 
-  
+  )}
+
   <div class="flex items-center justify-center text-center post-title mt-2 mb-6 text-xs md:text-md md:text-lg">
     <span class="uppercase">тема:&nbsp;&nbsp;</span>
     <h1 class="font-semibold uppercase">
@@ -42,129 +36,45 @@ const showAd = false;
     </h1>
   </div>
 
-  <!-- Изображение статьи -->
   {article.data.image && (
     <div class="w-full h-[30rem] overflow-hidden rounded-lg">
       <Image
-        src={article.data.image}        
+        src={article.data.image}
         width={800}
-        height={600} 
+        height={600}
         loading="eager"
         decoding="async"
         format="webp"
         alt={article.data.title}
-        class="w-full h-full object-cover"        
+        class="w-full h-full object-cover"
       />
     </div>
   )}
 
-<div id="title" class="flex justify-between items-center">
-  <p class="date flex items-center">
-    <Icon name="calendar" size={22} aria-label="Дата публикации" />
-    <time datetime={article.data.pubDate.toISOString()} class="ml-2 font-semibold text-sm">
-      {formatDate(article.data.pubDate)}
-    </time>
-  </p>
-  <p class="flex items-center gap-2">
-    <Icon name="user" size={20} />
-    <a href={`/about`}> Автоюрист </a>
-  </p>
-</div>  
+  <!-- tags -->
+  {article.data.tags && article.data.tags.length > 0 && (
+    <div class="tags flex flex-wrap gap-2 mt-4">
+      {article.data.tags.map((tag) => (
+        <span class="tag px-3 py-1 text-xs md:text-sm bg-gray-100 rounded-full text-black font-semibold">
+          {tag}
+        </span>
+      ))}
+    </div>
+  )}
+
+  <div id="title" class="flex justify-between items-center mt-6">
+    <p class="date flex items-center">
+      <Icon name="calendar" size={22} aria-label="Дата публикации" />
+      <time datetime={article.data.pubDate.toISOString()} class="ml-2 font-semibold text-sm">
+        {formatDate(article.data.pubDate)}
+      </time>
+    </p>
+    <p class="flex items-center gap-2">
+      <Icon name="user" size={20} />
+      <a href="/about">Автоюрист</a>
+    </p>
+  </div>
+
   <Content />
 </ArticleLayout>
 
-<style>
-  .tags a {
-    font-size: 0.8rem;
-    background-color: var(--mainLinkColor-light);
-    display: inline-block;
-    color: white;
-    padding: 0.1rem 0.7rem;
-    border-radius: 10px;
-  }
-
-  .tags a:hover {
-    color: white;
-    text-decoration: underline;
-    text-decoration-color: white;
-  }
-
-  summary span {
-    font-weight: 700;
-    margin-bottom: 10px;
-  }
-
-  ol li {
-    text-decoration: none;
-    margin: 0.5rem 0;
-    margin-left: 1rem;
-  }
-
-  ol li a {
-    font-weight: 600;
-    font-style: italic;
-    color: #6482c2 !important;
-  }
-
-  ol li a:hover {
-    cursor: pointer;
-    color: #889dca !important;
-  }
-
-  p {
-    margin: 1.2rem 0;
-  }  
-
-  h2 {
-    font-size: 1.25rem;
-    padding: 1.5rem 0;
-    text-align: left;
-    padding-bottom: 0.5rem;
-  }
-
-  h3 {
-    font-size: 1rem;
-    padding: 2rem 0 0.3rem 0;
-    text-align: left;
-    text-transform: uppercase;
-  }
-
-  figure {
-    margin: 2rem 0;
-    padding: 0.7rem;
-    border: 1px solid white;
-    border-radius: 20px;
-  }
-
-  figcaption {
-    margin-top: 0.5rem;
-    text-align: center;
-    font-style: italic;
-    background-color: rgb(189, 185, 185);
-    color: black;
-    font-weight: bold;
-  }
-
-  .docs-download {
-    margin-top: 2rem;
-  }
-
-  .docs-download p {
-    margin: 0.3rem 0;
-  }
-
-  .ArrowTop {
-    float: right;
-  }
-
-  .articles-list {
-    margin-top: 2rem;
-  }
-
-  .articles-list p {
-    margin: 0.2rem;
-  }
-
-  
-  
-</style>

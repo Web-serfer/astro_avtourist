@@ -8,6 +8,8 @@ tags: ["презумпция невиновности", "защита водит
 ---
 
 import Image from "../../components/articles/Image.astro";
+import DownloadLink from "../../components/articles/DownloadLink.astro";
+import RelatedArticles from "../../components/articles/RelatedArticles.astro";
 
 <details open>
   <summary>
@@ -229,22 +231,18 @@ import Image from "../../components/articles/Image.astro";
 
 </section>
 
-<div class="docs-download">
+{/* === скачивание документов === */}
 
-✅ _[Заявление о соблюдении презумпции невиновности. Скачать](https://galaxy-link.space/LVs)_
+<DownloadLink
+  text="Заявление о соблюдении презумпции невиновности. Скачать"
+  href="https://galaxy-link.space/LVs"
+/>
 
-✅ _[Заявление об использовании диктофона. Скачать](https://galaxy-link.space/ZJtvL2be)_
+<DownloadLink
+  text="Заявление об использовании диктофона. Скачать"
+  href="https://galaxy-link.space/ZJtvL2be"
+/>
 
-</div>
+{/* === другие статьи === */}
 
-<p class="articles">Другие статьи:</p>
-
-<div class="articles-list">
-
-_[Форма вины водителя 📖](forma-viny-voditelya)_
-
-_[Предъявление обвинения водителю 📖](preduyavlenie-obvineniya-voditelyu)_
-
-_[Просьба или требование инспектора 📖](prosba-ili-trebovanie-inspektora)_
-
-</div>
+<RelatedArticles />

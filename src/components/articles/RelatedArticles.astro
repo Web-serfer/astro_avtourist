@@ -1,0 +1,51 @@
+---
+import { getCollection } from 'astro:content';
+
+const blogPosts = await getCollection('blog');
+
+// Сортируем статьи по дате публикации в обратном порядке (от новых к старым)
+const sortedPosts = blogPosts.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+
+// Берем только первые 3 статьи
+const latestPosts = sortedPosts.slice(0, 3);
+---
+
+<div class="related-articles">
+  <p class="articles">Другие статьи:</p>
+  <div class="articles-list">
+    {latestPosts.map((post) => (
+      <a href={`/blog/${post.slug}/`} class="article-link">
+        {post.data.title} 📖
+      </a>
+    ))}
+  </div>
+</div>
+
+<style>
+  .related-articles {
+    margin-top: 2rem; 
+  }
+
+  .articles {
+    font-weight: bold;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .articles-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem; 
+  }
+
+  .article-link {
+    color: var(--color-text); 
+    text-decoration: none;
+    font-size: .9rem;
+    font-style: italic;
+  }
+
+  .article-link:hover {
+    text-decoration: underline;
+  }
+</style>

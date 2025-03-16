@@ -4,6 +4,7 @@ import { Icon } from 'astro-icon/components';
 import { formatDate } from '../../utils';
 import { getCollection } from 'astro:content';
 import ArticleLayout from '@layouts/ArticleLayout.astro';
+import Faq from '@components/articles/Faq.astro';
 
 const { slug } = Astro.params;
 
@@ -51,7 +52,6 @@ const showAd = false;
     </div>
   )}
 
-  <!-- tags -->
   {article.data.tags && article.data.tags.length > 0 && (
     <div class="tags flex flex-wrap gap-2 mt-4">
       {article.data.tags.map((tag) => (
@@ -76,5 +76,6 @@ const showAd = false;
   </div>
 
   <Content />
-</ArticleLayout>
+  {article.data.faq && <Faq questions={article.data.faq} />}
 
+</ArticleLayout>

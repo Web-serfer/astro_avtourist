@@ -10,6 +10,14 @@ const blogCollection = defineCollection({
     author: z.string(),
     description: z.string(),
     tags: z.array(z.string()),
+    faq: z
+      .array(
+        z.object({
+          question: z.string(), // Вопрос
+          answer: z.string(), // Ответ
+        })
+      )
+      .optional(), // Поле faq необязательное
   }),
 });
 

@@ -5,7 +5,6 @@ import { formatDate } from '../../utils';
 import { getCollection } from 'astro:content';
 import ArticleLayout from '@layouts/ArticleLayout.astro';
 import Faq from '@components/articles/Faq.astro';
-import DownloadLink from "../../components/articles/DownloadLink.astro";
 import RelatedArticles from "../../components/articles/RelatedArticles.astro";
 
 const { slug } = Astro.params;
@@ -81,20 +80,7 @@ const showAd = false;
   <!-- faq -->
   {article.data.faq && <Faq questions={article.data.faq} />}
 
-  {/* === скачивание документов === */}
-  <DownloadLink
-  links={[
-    {
-      text: "Заявление о соблюдении презумпции невиновности. Скачать",
-      href: "https://galaxy-link.space/LVs",
-    },
-    {
-      text: "Заявление об использовании диктофона. Скачать",
-      href: "https://galaxy-link.space/ZJtvL2be",
-    },
-  ]}
-  />
-
+  
 {/* === другие статьи === */}
 <RelatedArticles />
 

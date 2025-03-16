@@ -9,15 +9,11 @@ faq:
   [
     {
       question: "В каких случаях стоит обращаться к автоюристу?",
-      answer: "К автоюристу стоит обращаться при ДТП, спорах со страховыми компаниями, обжаловании штрафов ГИБДД и других ситуациях, связанных с дорожным законодательством.",
-    },
-    {
-      question: "Как выбрать хорошего автоюриста в Сургуте?",
-      answer: "При выборе автоюриста обращайте внимание на его опыт работы, репутацию, судебную практику и прозрачность условий работы.",
+      answer: "К автоюристу стоит обращаться при ДТП, спорах со страховыми компаниями, обжаловании штрафов ГИБДД и других ситуациях, связанных с лишеним прав или ДТП.",
     },
     {
       question: "Сколько стоит консультация автоюриста?",
-      answer: "Стоимость консультации зависит от сложности дела и опыта юриста. Многие специалисты предлагают бесплатную первичную консультацию.",
+      answer: "Первичная консультация автоюриста Сургута - бесплатна.",
     },
     {
       question: "Какие документы нужны для консультации?",
@@ -38,6 +34,7 @@ import { CURRENT_YEAR } from "../../constants.ts";
 import TableOfContents from "../../components/articles/TableOfContents.astro";
 import Image from "../../components/articles/Image.astro";
 import RelatedArticles from "../../components/articles/RelatedArticles.astro";
+import AvtouristCard from "../../components/articles/AvtouristCard.astro";
 
 <TableOfContents
   items={[
@@ -321,3 +318,5 @@ import RelatedArticles from "../../components/articles/RelatedArticles.astro";
 В {CURRENT_YEAR} году автоюрист Сургута продолжает активно помогать водителям в решении сложных правовых вопросов, связанных с дорожным движением.
 
 </section>
+
+<AvtouristCard />

@@ -1,10 +1,17 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, type CollectionEntry } from 'astro:content';
+import { Astro } from 'astro';
 
 const blogPosts = await getCollection('blog');
 
-// Сортируем статьи по дате публикации в обратном порядке (от новых к старым)
-const sortedPosts = blogPosts.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+// Получаем slug текущей статьи из URL
+const currentSlug = Astro.url.pathname.split('/').filter(Boolean).pop();
+
+// Фильтруем статьи, исключая текущую
+const otherPosts = blogPosts.filter((post) => post.slug !== currentSlug);
+
+// Сортируем оставшиеся статьи по дате публикации в обратном порядке
+const sortedPosts = otherPosts.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
 
 // Берем только первые 3 статьи
 const latestPosts = sortedPosts.slice(0, 3);
@@ -23,7 +30,7 @@ const latestPosts = sortedPosts.slice(0, 3);
 
 <style>
   .related-articles {
-    margin-top: 2rem; 
+    margin-top: 2rem;
   }
 
   .articles {
@@ -35,11 +42,11 @@ const latestPosts = sortedPosts.slice(0, 3);
   .articles-list {
     display: flex;
     flex-direction: column;
-    gap: 0.1rem; 
+    gap: 0.1rem;
   }
 
   .article-link {
-    color: var(--color-text); 
+    color: var(--color-text);
     text-decoration: none;
     font-size: .9rem;
     font-style: italic;

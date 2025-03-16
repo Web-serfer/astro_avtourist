@@ -17,15 +17,6 @@
   margin: 0.75rem 0;
 }
 
-/* Стили для блоков с заметками */
-.zametka {
-  background-color: rgba(254, 254, 254, 0.1);
-  padding: 0.75rem;
-  margin: 2rem 0;
-  border-left: 4px solid var(--mainLinkColor-light);
-  border-radius: 4px;
-}
-
 /* Стили для таблиц */
 .stat-block table {
   width: 100%;
@@ -116,11 +107,6 @@ figcaption em {
 
   p {
     font-size: 0.85rem;
-  }
-
-  .zametka {
-    padding: 0.5rem;
-    border-left-width: 2px;
   }
 
   .stat-block th,

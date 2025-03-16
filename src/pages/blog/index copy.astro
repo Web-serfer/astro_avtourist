@@ -6,7 +6,7 @@ import BlogLayout from '@layouts/BlogLayout.astro';
 import SearchForm from '@components/articles/SearchForm.astro';
 import ArticleCard from '@components/articles/ArticleCard.astro';
 import Pagination from '@components/blog/Pagination.astro';
-import { ARTICLES_PER_PAGE } from '../../consts';
+import { ARTICLES_PER_PAGE } from '../../constants';
 
 const currentPage: number | null = +Astro.url.searchParams.get('page')! || 1;
 

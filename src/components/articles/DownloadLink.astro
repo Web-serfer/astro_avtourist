@@ -1,25 +1,57 @@
 ---
-const { text, href } = Astro.props;
+const { links } = Astro.props;
+
+interface Link {
+  text: string;
+  href: string;
+}
 ---
 
-<div class="docs-download-item">
-  ✅ <a href={href} target="_blank" rel="noopener noreferrer">{text}</a>
+<div class="docs-download">
+  <p class="docs-download-title">Скачать документы:</p>
+  {links && links.map((link: Link) => (
+    <div class="docs-download-item">
+      <span>
+        <a href={link.href} target="_blank" rel="noopener noreferrer">{link.text}</a>
+      </span>
+      ✅
+    </div>
+  ))}
 </div>
 
 <style>
+  .docs-download {
+    margin-top: 2rem;
+  }
+
+  .docs-download-title {
+    font-weight: bold;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    text-align: left; /* По умолчанию выравниваем заголовок по левому краю */
+  }
+
   .docs-download-item {
-    margin-bottom: 0.2rem; 
+    margin-bottom: 0.2rem;
   }
 
   .docs-download-item a {
-    color: var(--color-link); 
+    color: var(--color-link);
     text-decoration: none;
     font-weight: 500;
     font-style: italic;
     font-size: .9rem;
+    padding-left: 1rem;
   }
 
   .docs-download-item a:hover {
     text-decoration: underline;
+  }
+
+  /* ==== Медиа-запрос ==== */
+  @media (max-width: 640px) {
+    .docs-download-title {
+      text-align: center;
+    }
   }
 </style>

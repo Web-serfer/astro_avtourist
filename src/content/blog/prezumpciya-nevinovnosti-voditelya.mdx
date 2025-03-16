@@ -7,37 +7,25 @@ description: "В статье рассмотрен вопрос применен
 tags: ["презумпция невиновности", "защита водителей"]
 ---
 
+import TableOfContents from "../../components/articles/TableOfContents.astro";
 import Image from "../../components/articles/Image.astro";
 import DownloadLink from "../../components/articles/DownloadLink.astro";
 import RelatedArticles from "../../components/articles/RelatedArticles.astro";
 
-<details open>
-  <summary>
-    <span>Содержание</span>
-  </summary>
-  -------------------------------
-  <ol>
-    <li>
-      <a href="#one">Понятие презумпции невиновности.</a>
-    </li>
-    <li>
-      <a href="#two">Значение презумпции невиновности.</a>
-    </li>
-    <li>
-      <a href="#three">Презумпция невиновности как фикция.</a>
-    </li>
-    <li>
-      <a href="#four">Презумпция виновности в административном процессе.</a>
-    </li>
-    <li>
-      <a href="#five">Презумпция виновности как факт.</a>
-    </li>
-    <li>
-      <a href="#six">Информация к размышлению</a>
-    </li>
-  </ol>
-  -------------------------------
-</details>
+{/* === содержание === */}
+
+<TableOfContents
+  items={[
+    { id: "one", text: "Понятие презумпции невиновности." },
+    { id: "two", text: "Значение презумпции невиновности." },
+    { id: "three", text: "Презумпция невиновности как фикция." },
+    { id: "four", text: "Презумпция виновности в административном процессе." },
+    { id: "five", text: "Презумпция виновности как факт." },
+    { id: "six", text: "Информация к размышлению" },
+  ]}
+/>
+
+{/* ===./ содержание === */}
 
 <section class="article-section" id="one">
 

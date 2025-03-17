@@ -1,0 +1,47 @@
+---
+interface Props {
+  items: { text: string; href?: string }[];
+}
+
+const { items } = Astro.props;
+---
+
+<ol>
+  {
+    items.map((item) => (
+      <li>
+        ✅ {item.href ? <a href={item.href}>{item.text}</a> : item.text}
+      </li>
+    ))
+  }
+</ol>
+
+<style>
+  ol {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  li {
+    font-size: 1rem; 
+    line-height: 1.5; 
+    color: var(--textColor);
+  }
+
+  a {
+    color: var(--accentColor);
+    text-decoration: none; 
+    transition: color 0.3s ease; 
+  }
+
+  a:hover {
+    color: var(--accentHoverColor); 
+    text-decoration: underline; 
+  }
+</style>

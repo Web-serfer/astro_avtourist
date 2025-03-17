@@ -5,7 +5,7 @@ import { formatDate } from '../../utils';
 import { getCollection } from 'astro:content';
 import ArticleLayout from '@layouts/ArticleLayout.astro';
 import Faq from '@components/articles/Faq.astro';
-import AvtouristCard from "../../components/articles/AvtouristCard.astro";
+
 import RelatedArticles from "../../components/articles/RelatedArticles.astro";
 
 const { slug } = Astro.params;
@@ -79,9 +79,7 @@ const showAd = false;
 
   <Content />
   <!-- faq -->
-  {article.data.faq && <Faq questions={article.data.faq} />}
-  <!-- avtourist card -->
-  <AvtouristCard />
+  {article.data.faq && <Faq questions={article.data.faq} />}    
   
 {/* === другие статьи === */}
 <RelatedArticles />

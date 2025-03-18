@@ -13,35 +13,18 @@ import Zametka from "../../components/articles/Zametka.astro";
 import Alert from "../../components/articles/Alert.astro";
 import AvtouristCard from "../../components/articles/AvtouristCard.astro";
 
-<details open>
-  <summary>
-    <span>Содержание</span>
-  </summary>
-  -------------------------------
-  <ol>
-    <li>
-      <a href="#one">1. Административный протокол как сущность</a>
-    </li>
-    <li>
-      <a href="#two">2. Роль и значение составления протокола</a>
-    </li>
-    <li>
-      <a href="#three">3. Алгоритмы мышления инспектора ГИБДД</a>
-    </li>
-    <li>
-      <a href="#four">4. Защитный алгоритм водителя</a>
-    </li>
-    <li>
-      <a href="#five">5. Стратегия иррационального поведения</a>
-    </li>
-    <li>
-      <a href="#six">6. Информация к размышлению</a>
-    </li>
-  </ol>
-  -------------------------------
-</details>
+<TableOfContents
+  items={[
+    { id: "one", text: "Административный протокол как сущность." },
+    { id: "two", text: "Роль и значение составления протокола." },
+    { id: "three", text: "Алгоритмы мышления инспектора ГИБДД." },
+    { id: "four", text: "Защитный алгоритм водителя." },
+    { id: "five", text: "Стратегия иррационального поведения." },
+    { id: "six", text: "Информация к размышлению." },
+  ]}
+/>
 
-<section id="one">
+<section class="article-section" id="one">
 
 ## **1. Административный протокол как сущность**
 
@@ -71,7 +54,7 @@ import AvtouristCard from "../../components/articles/AvtouristCard.astro";
 
 </section>
 
-<section id="two">
+<section class="article-section" id="two">
 
 ## **2. Роль и значение составления протокола**
 
@@ -98,7 +81,7 @@ import AvtouristCard from "../../components/articles/AvtouristCard.astro";
 
 </section>
 
-<section id="three">
+<section class="article-section" id="three">
 
 ## **3. Алгоритмы мышления инспектора ГИБДД**
 
@@ -125,7 +108,7 @@ import AvtouristCard from "../../components/articles/AvtouristCard.astro";
 
 </section>
 
-<section id="four">
+<section class="article-section" id="four">
 
 ## **4. Защитный алгоритм водителя**
 
@@ -154,7 +137,7 @@ import AvtouristCard from "../../components/articles/AvtouristCard.astro";
 
 </section>
 
-<section id="five">
+<section class="article-section" id="five">
 
 ## **5. Стратегия иррационального поведения**
 
@@ -179,7 +162,7 @@ import AvtouristCard from "../../components/articles/AvtouristCard.astro";
 
 </section>
 
-<section id="six">
+<section class="article-section" id="six">
 
 ## **6. Информация к размышлению**
 
@@ -194,20 +177,3 @@ import AvtouristCard from "../../components/articles/AvtouristCard.astro";
 Судебной практики по таким вопросам практически нет, поэтому данный метод остается эффективным инструментом защиты.
 
 </section>
-
-<a href="#title" class="ArrowTop">
-  К началу ⬆️
-</a>
-<br />
-
-<p class="articles">Другие статьи:</p>
-
-<div class="articles-list">
-
-- [Форма вины водителя 📖](/forma-viny-voditelya)
-- [Предъявление обвинения водителю 📖](/preduyavlenie-obvineniya-voditelyu)
-- [Просьба или требование инспектора 📖](/prosba-ili-trebovanie-inspektora)
-- [Судья как государственный обвинитель 📖](/sudya-gosudarstvennyj-obvinitel)
-- [Защитник по административному делу 📖](/zashchitnik-po-adm-delam)
-
-</div>

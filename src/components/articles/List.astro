@@ -10,7 +10,9 @@ const { items } = Astro.props;
   {
     items.map((item) => (
       <li>
-        ✅ <i>{item.text}</i>
+        <span class="list-item-content">
+          ✅ <i>{item.text}</i>
+        </span>
       </li>
     ))
   }
@@ -21,7 +23,7 @@ const { items } = Astro.props;
     margin-top: 1rem;
     display: flex;
     flex-direction: column;
-    gap: 1rem; 
+    gap: 1rem;
     padding-left: 1rem;
     padding-right: 1rem;
     width: 100%;
@@ -29,10 +31,18 @@ const { items } = Astro.props;
   }
 
   li {
-    font-size: 0.8rem; 
+    font-size: 0.8rem;
     font-weight: bold;
-    line-height: 1.5; 
+    line-height: 1.5;
     color: var(--textColor);
-    font-style: italic; 
+  }
+
+  .list-item-content {
+    display: flex;
+    gap: 0.5rem; 
+  }
+
+  li i {
+    font-style: italic;
   }
 </style>

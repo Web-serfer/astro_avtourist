@@ -19,6 +19,7 @@ pnpm-debug.log*
 
 # photoshop files
 .psd
+.txt
 
 # macOS-specific files
 .DS_Store

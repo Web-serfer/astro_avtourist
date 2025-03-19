@@ -12,11 +12,11 @@ const blogCollection = defineCollection({
     faq: z
       .array(
         z.object({
-          question: z.string(), // Вопрос
-          answer: z.string(), // Ответ
+          question: z.string(),
+          answer: z.string(),
         })
       )
-      .optional(), // Поле faq необязательное
+      .optional(),
   }),
 });
 

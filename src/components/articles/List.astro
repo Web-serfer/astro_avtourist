@@ -1,6 +1,6 @@
 ---
 interface Props {
-  items: { text: string; href?: string }[];
+  items: { text: string }[];
 }
 
 const { items } = Astro.props;
@@ -10,7 +10,7 @@ const { items } = Astro.props;
   {
     items.map((item) => (
       <li>
-        ✅ {item.href ? <a href={item.href}>{item.text}</a> : item.text}
+        ✅ <i>{item.text}</i>
       </li>
     ))
   }
@@ -21,7 +21,7 @@ const { items } = Astro.props;
     margin-top: 1rem;
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 1rem; 
     padding-left: 1rem;
     padding-right: 1rem;
     width: 100%;
@@ -29,19 +29,10 @@ const { items } = Astro.props;
   }
 
   li {
-    font-size: 1rem; 
+    font-size: 0.8rem; 
+    font-weight: bold;
     line-height: 1.5; 
     color: var(--textColor);
-  }
-
-  a {
-    color: var(--accentColor);
-    text-decoration: none; 
-    transition: color 0.3s ease; 
-  }
-
-  a:hover {
-    color: var(--accentHoverColor); 
-    text-decoration: underline; 
+    font-style: italic; 
   }
 </style>

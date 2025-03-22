@@ -10,7 +10,7 @@ import { ARTICLES_PER_PAGE } from '../../constants';
 
 const currentPage: number | null = +Astro.url.searchParams.get('page')! || 1;
 
-// Получение 6-статей блога по дате создания
+// Получение статей блога по дате создания
 const allArticles: CollectionEntry<'blog'>[] = (await getCollection('blog'))
   .sort(
     (a: CollectionEntry<'blog'>, b: CollectionEntry<'blog'>) =>
@@ -27,12 +27,11 @@ const articlesForPage: CollectionEntry<'blog'>[] = allArticles.slice(
 
 <BlogLayout
   title="Блог Автоюриста || Автоюрист Сургут"
-  description="Это страница блога на котором вы можете найти полезные статьи о юридических вопросах."
+  description="Это страница блога на котором вы можете найти полезные статьи о юридических вопросах."
   canonical="https://avtourist-surgut.ru/blog"
 >
   <main>
     <div class="max-w-7xl mx-auto md:px-4">
-      <!-- Заголовок и форма поиска -->
       <div class="flex flex-col items-center gap-4 pt-8">
         <h1 class="text-md md:text-lg text-center text-white font-semibold">
           Блог автоюриста Сургута
@@ -42,9 +41,7 @@ const articlesForPage: CollectionEntry<'blog'>[] = allArticles.slice(
         </div>
       </div>
 
-      <!-- Родительский блок с ограничением ширины -->
       <div class="max-w-7xl mx-auto px-4">
-        <!-- Список статей -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 my-6">
           {articlesForPage.map((article) => (
             <ArticleCard article={article} />
@@ -52,12 +49,9 @@ const articlesForPage: CollectionEntry<'blog'>[] = allArticles.slice(
         </div>
       </div>
 
-      <!-- Пагинация -->
       <Pagination
         currentPage={currentPage}
         totalPages={totalPages}
-        disablePrevious={currentPage === 1}
-        disableNext={currentPage === totalPages}
       />
     </div>
   </main>

@@ -3,18 +3,18 @@ import { Image } from 'astro:assets';
 import { Icon } from 'astro-icon/components';
 import admin from '@images/home/admin.webp';
 
+// Получаем текущий год
+const currentYear = new Date().getFullYear();
+
+// Формируем итоговую строку
+const finalString = `Бесплатная консультация автоюриста в Сургуте ${currentYear}`;
+
 interface Props {
-  title: string;
-  imageUrl?: ImageMetadata;
-  imageAlt?: string;
   phoneNumber?: string;
   phoneLink?: string;
 }
 
 const {
-  title,
-  imageUrl = admin,
-  imageAlt = 'Автоюрист в Сургуте - помощь при ДТП, лишении прав, споры с ГИБДД',
   phoneNumber = '+7 (922) 253-83-75',
   phoneLink = 'tel:+79222538375',
 } = Astro.props;
@@ -24,12 +24,12 @@ const {
   <div class="relative w-20 h-20 flex-shrink-0">
     <div class="relative w-full h-full rounded-full overflow-hidden">
       <Image
-        src={imageUrl}
+        src={admin}
         width={80}
         height={80}
         loading="lazy"
         decoding="async"
-        alt={imageAlt}
+        alt={finalString}
         class="w-full h-full object-cover rounded-full border-2 border-[var(--mainBorderColor)]"
       />
       <div class="absolute inset-0 rounded-full overflow-hidden">
@@ -41,7 +41,7 @@ const {
   </div>
 
   <div class="flex flex-col">
-    <p class="text-xl font-bold mb-1 text-[var(--textColor)]">{title}</p>
+    <p class="text-xl font-bold mb-1 text-[var(--textColor)]">{finalString}</p>
 
     <a
       href={phoneLink}

@@ -1,6 +1,6 @@
 import { defineCollection, z } from "astro:content";
 
-// Определение коллекции blog
+// Коллекция для блога
 const blogCollection = defineCollection({
   type: "content",
   schema: z.object({
@@ -20,7 +20,21 @@ const blogCollection = defineCollection({
   }),
 });
 
+// Коллекция для документов
+const docsCollection = defineCollection({
+  type: "content",
+  schema: z.object({
+    title: z.string(),
+    image: z.string(),
+    pubDate: z.date(),
+    description: z.string(),
+    category: z.string(),
+    tags: z.array(z.string()),
+  }),
+});
+
 // Экспорт коллекций
 export const collections = {
   blog: blogCollection,
+  docs: docsCollection,
 };

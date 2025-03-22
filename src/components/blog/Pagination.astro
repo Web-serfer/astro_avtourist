@@ -1,40 +1,46 @@
 ---
 import { Icon } from 'astro-icon/components';
-const { currentPage, totalPages, disablePrevious, disableNext } = Astro.props;
+const { currentPage, totalPages } = Astro.props;
 
 interface Props {
   currentPage: number;
   totalPages: number;
-  disablePrevious: boolean;
-  disableNext: boolean;
 }
+
+const previousPage = Math.max(1, currentPage - 1);
+const nextPage = Math.min(totalPages, currentPage + 1);
+
+const disablePrevious = currentPage === 1;
+const disableNext = currentPage === totalPages;
 ---
 
-<div class="flex justify-center gap-8 mt-2">
+<div class="flex justify-center items-center gap-2 mt-2">
   <a
-    href={'/blog?page=' + (currentPage - 1)}
-    class={disablePrevious
-      ? 'inline-block bg-[#6482c2] px-3 py-2 text-white rounded-md pointer-events-none'
-      : 'inline-block bg-indigo-100 px-3 py-2 hover:bg-[#6482c2] hover:text-white rounded-lg'}
+    href={`/blog?page=${previousPage}`}
+    class={`rounded-full p-2 ${
+      disablePrevious
+        ? 'bg-[#6482c2] text-white pointer-events-none'
+        : 'bg-indigo-100 hover:bg-[#6482c2] hover:text-white'
+    }`}
   >
-    <Icon
-      name="doubleArrowLeft"
-      title="Предыдущая страница"
-      size={22}
-      class="cursor-pointer"
-    />
+    <Icon name="doubleArrowLeft" title="Предыдущая страница" size={20} />
   </a>
+
   <a
-    href={'/blog?page=' + (currentPage + 1)}
-    class={disableNext
-      ? 'inline-block bg-gray-100 px-3 py-2 text-gray-400 rounded-lg pointer-events-none'
-      : 'inline-block bg-indigo-100 px-3 py-2 hover:bg-[#6482c2] hover:text-white rounded-lg'}
+    href={`/blog?page=${currentPage}`}
+    class="rounded-full w-8 h-8 flex items-center justify-center bg-[#6482c2] text-white"
   >
-    <Icon
-      name="doubleArrowRight"
-      title="Следующая страница"
-      size={22}
-      class="cursor-pointer"
-    />
+    {currentPage}
+  </a>
+
+  <a
+    href={`/blog?page=${nextPage}`}
+    class={`rounded-full p-2 ${
+      disableNext
+        ? 'bg-gray-100 text-gray-400 pointer-events-none'
+        : 'bg-indigo-100 hover:bg-[#6482c2] hover:text-white'
+    }`}
+  >
+    <Icon name="doubleArrowRight" title="Следующая страница" size={20} />
   </a>
 </div>

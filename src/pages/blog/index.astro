@@ -15,8 +15,7 @@ const allArticles: CollectionEntry<'blog'>[] = (await getCollection('blog'))
   .sort(
     (a: CollectionEntry<'blog'>, b: CollectionEntry<'blog'>) =>
       b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
-  )
-  .slice(0, 6);
+  );
 
 const totalPages: number = Math.ceil(allArticles.length / ARTICLES_PER_PAGE);
 

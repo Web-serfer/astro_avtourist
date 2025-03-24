@@ -9,7 +9,7 @@ const disablePrevious = currentPage === 1;
 const disableNext = currentPage === totalPages;
 ---
 
-<div class="flex flex-col gap-2 mt-2 relative">
+<div class="flex flex-col gap-4 mt-10 relative">
   <div class="flex justify-center items-center gap-2">
     <!-- Кнопка "Назад" -->
     <a
@@ -53,8 +53,9 @@ const disableNext = currentPage === totalPages;
   </div>
 
   <p
-    class="text-sm text-gray-300 text-center md:absolute md:right-0 md:top-1/2 md:-translate-y-1/2"
+    class="text-sm text-gray-300 text-center mt-1 md:mt-0 md:absolute md:right-0 md:top-1/2 md:-translate-y-1/2"
   >
+    <!-- Добавил mt-2 для мобильных и md:mt-0 для десктопа -->
     Страница {currentPage} из {totalPages}
   </p>
 </div>

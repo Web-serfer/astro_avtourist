@@ -9,34 +9,36 @@ const allArticles: CollectionEntry<"blog">[] = (await getCollection("blog"))
 ---
 
 <section class="section">
-  <h3
-    class="text-white text-[1.4rem] underline underline-offset-8 decoration-dotted py-4 mb-2"
-  >
+  <h3 class="text-white text-[1.4rem] underline underline-offset-8 decoration-dotted py-4 mb-2">
     Последние публикации
   </h3>
 
   <div class="flex flex-col gap-3">
-    <!-- Увеличено с gap-1 до gap-3 -->
     {
       allArticles.map((article) => (
         <a
           href={`/blog/${article.slug}`}
-          class="group block transition-all hover:translate-x-1 hover:bg-gray-800/20 rounded-lg px-2 py-2"
+          class="group block rounded-lg px-2 py-2"
         >
-          <div class="grid grid-cols-[24px_1fr_24px] items-center gap-3">
+          <div class="grid grid-cols-[24px_1fr_24px] items-center gap-3 relative">
+            <!-- Иконка статьи -->
             <Icon
               name="article"
               size={18}
-              class="text-gray-400 group-hover:text-gray-200 transition-colors"
+              class="text-gray-400 group-hover:text-gray-200 transition-colors duration-300"
             />
 
-            <span class="text-gray-300 group-hover:text-white transition-colors truncate text-sm md:text-base italic">
+            <!-- Текст с эффектом подчеркивания -->
+            <span class="text-gray-300 group-hover:text-white transition-colors duration-300 truncate text-sm md:text-base italic relative">
               {article.data.title}
+              <span class="absolute bottom-0 left-0 w-0 h-px bg-gradient-to-r from-transparent via-blue-300 to-transparent transition-all duration-300 group-hover:w-full"></span>
             </span>
+
+            <!-- Стрелка -->
             <Icon
               name="arrowRight"
               size={18}
-              class="text-gray-400 group-hover:text-gray-200 transition-colors justify-self-end"
+              class="text-gray-400 group-hover:text-gray-200 transition-colors duration-300 justify-self-end opacity-0 group-hover:opacity-100 translate-x-[-4px] group-hover:translate-x-0"
             />
           </div>
         </a>
@@ -44,3 +46,15 @@ const allArticles: CollectionEntry<"blog">[] = (await getCollection("blog"))
     }
   </div>
 </section>
+
+<style>
+  /* Дополнительные стили для плавности */
+  .section a {
+    transition: all 0.3s ease;
+  }
+  
+  .section a:hover {
+    transform: translateX(4px);
+    background-color: rgba(31, 41, 55, 0.2);
+  }
+</style>

@@ -1,12 +1,9 @@
 ---
-import { Image } from 'astro:assets';
-import { Icon } from 'astro-icon/components';
-import admin from '@images/home/admin.webp';
+import { Image } from "astro:assets";
+import { Icon } from "astro-icon/components";
+import admin from "@images/home/admin.webp";
 
-// Получаем текущий год
 const currentYear = new Date().getFullYear();
-
-// Формируем итоговую строку
 const finalString = `Бесплатная консультация автоюриста в Сургуте - (${currentYear})`;
 
 interface Props {
@@ -14,14 +11,15 @@ interface Props {
   phoneLink?: string;
 }
 
-const {
-  phoneNumber = '+7 (922) 253-83-75',
-  phoneLink = 'tel:+79222538375',
-} = Astro.props;
+const { phoneNumber = "+7 (922) 253-83-75", phoneLink = "tel:+79222538375" } =
+  Astro.props;
 ---
 
-<div class="flex items-center max-w-7xl mx-auto p-4 gap-2 md:gap-8 bg-[var(--contentBgColor)] rounded-lg shadow-md">
-  <div class="relative w-20 h-20 flex-shrink-0">
+<div
+  class="flex items-center max-w-7xl mx-auto p-4 gap-2 md:gap-8 bg-[var(--contentBgColor)] rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300"
+>
+  <!-- Аватар с анимацией -->
+  <div class="relative w-20 h-20 flex-shrink-0 group">
     <div class="relative w-full h-full rounded-full overflow-hidden">
       <Image
         src={admin}
@@ -30,25 +28,42 @@ const {
         loading="lazy"
         decoding="async"
         alt={finalString}
-        class="w-full h-full object-cover rounded-full border-2 border-[var(--mainBorderColor)]"
+        class="w-full h-full object-cover rounded-full border-2 border-[var(--mainBorderColor)] group-hover:border-white/50 transition-colors duration-300"
       />
       <div class="absolute inset-0 rounded-full overflow-hidden">
         <div class="absolute inset-0 bg-white/10 animate-glow"></div>
       </div>
     </div>
-    <div class="absolute top-0 -right-[15px] w-3 h-3 bg-green-700 rounded-full animate-ping"></div>
-    <div class="absolute top-0 -right-[15px] w-3 h-3 bg-green-700 rounded-full"></div>
+    <div
+      class="absolute top-0 -right-[15px] w-3 h-3 bg-green-700 rounded-full animate-ping"
+    >
+    </div>
+    <div class="absolute top-0 -right-[15px] w-3 h-3 bg-green-700 rounded-full">
+    </div>
   </div>
 
+  <!-- Текст и телефон -->
   <div class="flex flex-col">
-    <p class="text-xl font-bold mb-1 text-[var(--textColor)]">{finalString}</p>
+    <p
+      class="text-xl font-bold mb-1 text-white group-hover:text-white/90 transition-colors duration-300"
+    >
+      {finalString}
+    </p>
 
     <a
       href={phoneLink}
-      class="inline-flex items-center gap-2 text-base text-[var(--textColor)] hover:text-[var(--accentColor)] transition-colors"
+      class="group/phone inline-flex items-center gap-2 text-base transition-colors duration-300"
     >
-      <Icon name="phoneIcon" size={18} class="phone-icon" />
-      <span>{phoneNumber}</span>
+      <Icon
+        name="phoneIcon"
+        size={18}
+        class="text-gray-300 group-hover/phone:text-white transition-colors duration-300"
+      />
+      <span
+        class="text-gray-300 group-hover/phone:text-white transition-colors duration-300"
+      >
+        {phoneNumber}
+      </span>
     </a>
   </div>
 </div>

@@ -118,12 +118,13 @@ const canonical = `https://avtourist-surgut.ru/tag/${tag}`;
                                     </div>
 
                                     {/* читать далее */}
-                                    <span 
+                                    <a 
+                                        href={`/blog/${article.slug}`} 
                                         class="bg-[hsl(var(--accent1))] text-white text-xs px-3 py-1 rounded 
                                                hover:bg-[hsl(var(--accent1)/0.9)] transition-colors hover:underline whitespace-nowrap"
                                     >
                                         читать далее...
-                                    </span>
+                                    </a>
                                 </footer>
                             </a>
                         </article>

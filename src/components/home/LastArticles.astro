@@ -1,0 +1,46 @@
+---
+import { Icon } from "astro-icon/components";
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+
+const allArticles: CollectionEntry<"blog">[] = (await getCollection("blog"))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 5);
+---
+
+<section class="section">
+  <h3
+    class="text-white text-[1.4rem] underline underline-offset-8 decoration-dotted py-4 mb-2"
+  >
+    Последние публикации
+  </h3>
+
+  <div class="flex flex-col gap-3">
+    <!-- Увеличено с gap-1 до gap-3 -->
+    {
+      allArticles.map((article) => (
+        <a
+          href={`/blog/${article.slug}`}
+          class="group block transition-all hover:translate-x-1 hover:bg-gray-800/20 rounded-lg px-2 py-2"
+        >
+          <div class="grid grid-cols-[24px_1fr_24px] items-center gap-3">
+            <Icon
+              name="article"
+              size={18}
+              class="text-gray-400 group-hover:text-gray-200 transition-colors"
+            />
+
+            <span class="text-gray-300 group-hover:text-white transition-colors truncate text-sm md:text-base italic">
+              {article.data.title}
+            </span>
+            <Icon
+              name="arrowRight"
+              size={18}
+              class="text-gray-400 group-hover:text-gray-200 transition-colors justify-self-end"
+            />
+          </div>
+        </a>
+      ))
+    }
+  </div>
+</section>

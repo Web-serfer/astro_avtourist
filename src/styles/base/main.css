@@ -30,7 +30,6 @@
 * {
   line-height: 1.8em;
   box-sizing: border-box;
-  color: var(--mainTextColor);
   scroll-behavior: smooth;
   scroll-padding-top: 82px;
   letter-spacing: 0.05em;

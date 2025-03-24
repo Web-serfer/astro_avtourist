@@ -1,24 +1,24 @@
 ---
-import { Image } from 'astro:assets';
-import { Icon } from 'astro-icon/components';
-import { formatDate } from '../../utils';
-import { getCollection } from 'astro:content';
-import ArticleLayout from '@layouts/ArticleLayout.astro';
-import Faq from '@components/articles/Faq.astro';
+import { Image } from "astro:assets";
+import { Icon } from "astro-icon/components";
+import { formatDate } from "../../utils";
+import { getCollection } from "astro:content";
+import ArticleLayout from "@layouts/ArticleLayout.astro";
+import Faq from "@components/articles/Faq.astro";
 
 import RelatedArticles from "../../components/articles/RelatedArticles.astro";
 
 const { slug } = Astro.params;
 
 if (slug === undefined) {
-  throw new Error('Slug is required');
+  throw new Error("Slug is required");
 }
 
-const blogEntries = await getCollection('blog');
+const blogEntries = await getCollection("blog");
 const article = blogEntries.find((entry) => entry.slug === slug);
 
 if (article === undefined) {
-  return Astro.redirect('/404');
+  return Astro.redirect("/404");
 }
 
 const { Content } = await article.render();
@@ -26,48 +26,59 @@ const showAd = false;
 ---
 
 <ArticleLayout canonical={Astro.url.href}>
-  {showAd && (
-    <div class="reklama cursor-pointer py-4 flex justify-center items-center">
-      {/* <Banner /> */}
-    </div>
-  )}
+  {
+    showAd && (
+      <div class="reklama cursor-pointer py-4 flex justify-center items-center">
+        {/* <Banner /> */}
+      </div>
+    )
+  }
 
-  <div class="flex items-center justify-center text-center post-title mt-2 mb-6 text-xs md:text-md md:text-lg">
+  <div
+    class="flex items-center justify-center text-center post-title mt-2 mb-6 text-xs md:text-md md:text-lg"
+  >
     <span class="uppercase">тема:&nbsp;&nbsp;</span>
-    <h1 class="font-semibold uppercase">
+    <h1 class="font-semibold uppercase text-gray-300">
       {article.data.title}
     </h1>
   </div>
 
-  {article.data.image && (
-    <div class="w-full h-[30rem] overflow-hidden rounded-lg">
-      <Image
-        src={article.data.image}
-        width={800}
-        height={600}
-        loading="eager"
-        decoding="async"
-        format="webp"
-        alt={article.data.title}
-        class="w-full h-full object-cover"
-      />
-    </div>
-  )}
+  {
+    article.data.image && (
+      <div class="w-full h-[30rem] overflow-hidden rounded-lg">
+        <Image
+          src={article.data.image}
+          width={800}
+          height={600}
+          loading="eager"
+          decoding="async"
+          format="webp"
+          alt={article.data.title}
+          class="w-full h-full object-cover"
+        />
+      </div>
+    )
+  }
 
-  {article.data.tags && article.data.tags.length > 0 && (
-    <div class="tags flex flex-wrap gap-2 mt-4">
-      {article.data.tags.map((tag) => (
-        <span class="tag px-3 py-1 text-xs md:text-sm bg-gray-100 rounded-full text-black font-semibold">
-          {tag}
-        </span>
-      ))}
-    </div>
-  )}
+  {
+    article.data.tags && article.data.tags.length > 0 && (
+      <div class="tags flex flex-wrap gap-2 mt-4">
+        {article.data.tags.map((tag) => (
+          <span class="tag px-3 py-1 text-xs md:text-sm bg-gray-100 rounded-full text-black font-semibold">
+            {tag}
+          </span>
+        ))}
+      </div>
+    )
+  }
 
   <div id="title" class="flex justify-between items-center mt-6">
     <p class="date flex items-center">
       <Icon name="calendar" size={22} aria-label="Дата публикации" />
-      <time datetime={article.data.pubDate.toISOString()} class="ml-2 font-semibold text-sm">
+      <time
+        datetime={article.data.pubDate.toISOString()}
+        class="ml-2 font-semibold text-sm"
+      >
         {formatDate(article.data.pubDate)}
       </time>
     </p>
@@ -79,9 +90,8 @@ const showAd = false;
 
   <Content />
   <!-- faq -->
-  {article.data.faq && <Faq questions={article.data.faq} />}    
-  
-{/* === другие статьи === */}
-<RelatedArticles />
+  {article.data.faq && <Faq questions={article.data.faq} />}
 
+  {/* === другие статьи === */}
+  <RelatedArticles />
 </ArticleLayout>

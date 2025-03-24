@@ -58,10 +58,14 @@ const navLinkColorHover = "hover:text-[--mainLinkColor-light]";
           <li class="ml-2 sm:ml-4">
             <a
               href="/search"
-              class={`${navLinkColor} ${navLinkColorHover} transition-colors`}
+              class="text-[#adb0b1] hover:text-[--mainLinkColor-light] transition-colors"
               aria-label="Поиск по статьям"
             >
-              <Icon name="searchIcon" size={20} />
+              <Icon
+                name="searchIcon"
+                size={20}
+                class="fill-[#adb0b1] hover:fill-[--mainLinkColor-light]"
+              />
             </a>
           </li>
         </ul>

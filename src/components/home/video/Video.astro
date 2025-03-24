@@ -1,22 +1,18 @@
 ---
 import VideoCard from "../video/VideoCard.astro";
-import Videos from "./dataVideo.js"
-
+import Videos from "./dataVideo.js";
 ---
 
 <section>
   <div id="video"></div>
-  <h3 class="text-[1.4rem] underline underline-offset-8 decoration-dotted my-6">
+  <h3
+    class="text-white text-[1.4rem] underline underline-offset-8 decoration-dotted my-6"
+  >
     Видео материалы
   </h3>
 
   <div id="video-wrapper">
-    {
-      Videos.map((video) => 
-      <VideoCard 
-        title={video.title} 
-      />
-      )}
+    {Videos.map((video) => <VideoCard title={video.title} />)}
   </div>
 </section>
 
@@ -27,7 +23,6 @@ import Videos from "./dataVideo.js"
     gap: 1em;
   }
 
-  
   @media (width < 800px) {
     #video-wrapper {
       grid-template-columns: 1fr 1fr;

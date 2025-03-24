@@ -1,18 +1,20 @@
 ---
-import { Image } from 'astro:assets';
+import { Image } from "astro:assets";
+import { Icon } from "astro-icon/components";
 
 const navLinks = [
-  { url: '/', title: 'Главная' },
-  { url: '/blog', title: 'Блог' },
-  { url: '/documents', title: 'Документы' },
-  { url: '/faq', title: 'FAQ' },
+  { url: "/", title: "Главная" },
+  { url: "/blog", title: "Блог" },
+  { url: "/documents", title: "Документы" },
 ];
 
 const pathname = new URL(Astro.request.url).pathname;
-const currentPath = pathname === '/' ? '/' : pathname.slice(1);
+const currentPath = pathname === "/" ? "/" : pathname.slice(1);
 ---
 
-<header class="bg-[#18191a] sticky top-0 shadow-[0_2px_10px_rgba(255,255,255,0.2)] z-50 relative">
+<header
+  class="bg-[#18191a] sticky top-0 shadow-[0_2px_10px_rgba(255,255,255,0.2)] z-50 relative"
+>
   <div class="container mx-auto px-2 sm:px-4">
     <div class="flex items-center justify-between md:h-12">
       <!-- Логотип -->
@@ -22,7 +24,7 @@ const currentPath = pathname === '/' ? '/' : pathname.slice(1);
           width={50}
           height={50}
           loading="eager"
-          decoding="async"         
+          decoding="async"
           format="webp"
           alt="Автоюрист Сургут"
           class="hover:opacity-80 transition-opacity"
@@ -31,57 +33,76 @@ const currentPath = pathname === '/' ? '/' : pathname.slice(1);
 
       <!-- Навигация -->
       <nav class="w-full sm:w-auto">
-        <ul class="flex justify-center sm:justify-end items-center gap-2 sm:gap-6 uppercase">
-          {navLinks.map((link) => (
-            <li>
-              <a
-                href={link.url}
-                class={`text-sm md:text-base ${
-                  currentPath === link.url.slice(1)
-                    ? 'text-[--mainLinkColor-light] font-medium'
-                    : 'text-[#adb0b1] hover:text-[--mainLinkColor-light]'
-                } transition-colors px-2 py-1 sm:px-0 sm:py-0`}
-                aria-current={currentPath === link.url.slice(1) ? 'page' : undefined}
-              >
-                {link.title}
-              </a>
-            </li>
-          ))}
+        <ul
+          class="flex justify-center sm:justify-end items-center gap-2 sm:gap-6 uppercase"
+        >
+          {
+            navLinks.map((link) => (
+              <li>
+                <a
+                  href={link.url}
+                  class={`text-sm md:text-base ${
+                    currentPath === link.url.slice(1)
+                      ? "text-[--mainLinkColor-light] font-medium"
+                      : "text-[#adb0b1] hover:text-[--mainLinkColor-light]"
+                  } transition-colors px-2 py-1 sm:px-0 sm:py-0`}
+                  aria-current={
+                    currentPath === link.url.slice(1) ? "page" : undefined
+                  }
+                >
+                  {link.title}
+                </a>
+              </li>
+            ))
+          }
+          <!-- Иконка поиска -->
+          <li class="ml-2 sm:ml-4">
+            <a
+              href="/search"
+              class="text-[#adb0b1] hover:text-[--mainLinkColor-light] transition-colors"
+              aria-label="Поиск по статьям"
+              title="Поиск по статьям"
+            >
+              <!-- search icon -->
+              <Icon name="searchIcon" size={20} />
+            </a>
+          </li>
         </ul>
       </nav>
     </div>
   </div>
 
   <!-- Прогресс-бар -->
-  <div 
-    id="scrollLine" 
+  <div
+    id="scrollLine"
     class="h-[2px] bg-white absolute bottom-0 left-0 w-0 transition-[width] duration-300"
     style="z-index: 999"
-  ></div>
+  >
+  </div>
 </header>
 
 <script is:inline>
-  (function() {
+  (function () {
     let scrollHandler = null;
     let resizeHandler = null;
     let observer = null;
 
     function initScrollLine() {
-      const scrollLine = document.getElementById('scrollLine');
+      const scrollLine = document.getElementById("scrollLine");
       if (!scrollLine) return;
 
       // Удаляем старые обработчики
-      window.removeEventListener('scroll', scrollHandler);
-      window.removeEventListener('resize', resizeHandler);
+      window.removeEventListener("scroll", scrollHandler);
+      window.removeEventListener("resize", resizeHandler);
 
       // Функция обновления прогресса
       const updateProgress = () => {
         const scrollY = window.scrollY;
-        const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-        const progress = maxScroll > 0 
-          ? Math.min((scrollY / maxScroll) * 100, 100)
-          : 0;
-        
+        const maxScroll =
+          document.documentElement.scrollHeight - window.innerHeight;
+        const progress =
+          maxScroll > 0 ? Math.min((scrollY / maxScroll) * 100, 100) : 0;
+
         scrollLine.style.width = `${progress}%`;
       };
 
@@ -94,25 +115,25 @@ const currentPath = pathname === '/' ? '/' : pathname.slice(1);
       observer.observe(document.body, {
         childList: true,
         subtree: true,
-        attributes: true
+        attributes: true,
       });
 
       // Инициализация
       updateProgress();
-      window.addEventListener('scroll', scrollHandler);
-      window.addEventListener('resize', resizeHandler);
+      window.addEventListener("scroll", scrollHandler);
+      window.addEventListener("resize", resizeHandler);
     }
 
     // Инициализация при загрузке
-    document.addEventListener('DOMContentLoaded', initScrollLine);
+    document.addEventListener("DOMContentLoaded", initScrollLine);
 
     // Переинициализация при навигации
-    document.addEventListener('astro:after-swap', initScrollLine);
+    document.addEventListener("astro:after-swap", initScrollLine);
 
     // Очистка
-    document.addEventListener('astro:before-swap', () => {
-      window.removeEventListener('scroll', scrollHandler);
-      window.removeEventListener('resize', resizeHandler);
+    document.addEventListener("astro:before-swap", () => {
+      window.removeEventListener("scroll", scrollHandler);
+      window.removeEventListener("resize", resizeHandler);
       if (observer) observer.disconnect();
     });
   })();

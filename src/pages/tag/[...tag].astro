@@ -1,0 +1,141 @@
+---
+import "@styles/blog/blog.css";
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+import BlogLayout from "@layouts/BlogLayout.astro";
+import { Icon } from 'astro-icon/components';
+import { formatDate } from '../../utils';
+
+const { tag } = Astro.params;
+
+if (tag === undefined) {
+    throw new Error('Tag is required');
+}
+
+// Получение и сортировка статей
+const allArticles: CollectionEntry<'blog'>[] = (await getCollection('blog'))
+    .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+// Фильтрация по тегу
+const tagArticles = allArticles.filter(article => 
+    article.data.tags?.includes(tag)
+);
+
+const title = `Статьи по тегу: #${tag} | Автоюрист Сургут`;
+const description = `Статьи по тегу #${tag} на странице блога Автоюриста. Юридические вопросы и полезные статьи.`;
+const canonical = `https://avtourist-surgut.ru/tag/${tag}`;
+---
+
+<BlogLayout 
+    title={title} 
+    description={description} 
+    canonical={canonical}
+>
+    <main class="bg-[#1b1c1d] min-h-screen py-6 md:py-8">
+        <div class="container mx-auto px-4 max-w-4xl">
+            <!-- Заголовок страницы -->
+            <div class="mb-6 md:mb-8 text-center">
+                <h1 class="text-xl md:text-3xl font-bold text-white">
+                    Статьи по тегу: <span class="text-[hsl(var(--accent1))]">#{tag}</span>
+                </h1>
+                <p class="mt-1 md:mt-2 text-sm md:text-base text-gray-300">
+                    Найдено статей: {tagArticles.length}
+                </p>
+            </div>
+
+            <!-- Список статей -->
+            {tagArticles.length > 0 ? (
+                <div class="space-y-4 md:space-y-6">
+                    {tagArticles.map((article) => (
+                        <article 
+                            class="bg-[#2c2d2e] rounded-lg border border-[#3d3e3f] shadow-sm 
+                                   overflow-hidden transition-all duration-300 hover:border-[hsl(var(--accent1))]"
+                        >
+                            <a 
+                                href={`/blog/${article.slug}`} 
+                                class="block hover:no-underline"
+                            >
+                                {/* title */}
+                                <header class="px-4 md:px-6 py-3 md:py-4">
+                                    <h2 class="text-base md:text-xl font-semibold text-white hover:underline">
+                                        {article.data.title}
+                                    </h2>
+                                    
+                                    {/* tags mobile */}
+                                    <div class="md:hidden">
+                                        {article.data.tags && (
+                                            <ul class="flex flex-wrap gap-1 md:gap-2 mt-2">
+                                                {article.data.tags.slice(0, 3).map((t) => (
+                                                    <li 
+                                                        class={`text-[0.6rem] md:text-xs px-1.5 md:px-2 py-0.5 md:py-1 rounded 
+                                                               ${t === tag ? 'bg-[hsl(var(--accent1))] text-white' : 'bg-[#3d3e3f] text-gray-300'}`}
+                                                    >
+                                                        <a href={`/tag/${t}`} class="hover:underline">
+                                                            #{t}
+                                                        </a>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        )}
+                                    </div>
+                                </header>
+
+                                {/* card footer */}
+                                <footer 
+                                    class="px-4 md:px-6 py-3 md:py-4 border-t border-[#3d3e3f] 
+                                           flex flex-wrap items-center justify-between gap-2 md:gap-3"
+                                >
+                                    <div class="flex flex-wrap items-center gap-2 md:gap-4">
+                                        <!-- Дата -->
+                                        <p class="flex items-center gap-1 md:gap-2 text-xs md:text-sm text-gray-300 whitespace-nowrap">
+                                            <Icon 
+                                                name="calendar" 
+                                                size="14" 
+                                                class="text-gray-400 min-w-[14px]" 
+                                            />
+                                            <time datetime={article.data.pubDate.toISOString()}>
+                                                {formatDate(article.data.pubDate)}
+                                            </time>
+                                        </p>
+
+                                        {/* теги  descktop */}
+                                        <div class="hidden md:block">
+                                            {article.data.tags && (
+                                                <ul class="flex flex-wrap gap-1 md:gap-2">
+                                                    {article.data.tags.slice(0, 3).map((t) => (
+                                                        <li 
+                                                            class={`text-xs px-2 py-1 rounded 
+                                                                   ${t === tag ? 'bg-[hsl(var(--accent1))] text-white' : 'bg-[#3d3e3f] text-gray-300'}`}
+                                                        >
+                                                            <a href={`/tag/${t}`} class="hover:underline">
+                                                                #{t}
+                                                            </a>
+                                                        </li>
+                                                    ))}
+                                                </ul>
+                                            )}
+                                        </div>
+                                    </div>
+
+                                    {/* читать далее */}
+                                    <span 
+                                        class="bg-[hsl(var(--accent1))] text-white text-xs px-3 py-1 rounded 
+                                               hover:bg-[hsl(var(--accent1)/0.9)] transition-colors hover:underline whitespace-nowrap"
+                                    >
+                                        читать далее...
+                                    </span>
+                                </footer>
+                            </a>
+                        </article>
+                    ))}
+                </div>
+            ) : (
+                <div class="text-center py-8 md:py-12">
+                    <p class="text-lg md:text-xl text-gray-400">
+                        По тегу "#{tag}" статьи не найдены
+                    </p>
+                </div>
+            )}
+        </div>
+    </main>
+</BlogLayout>

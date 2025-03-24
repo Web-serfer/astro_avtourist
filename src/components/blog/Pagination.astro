@@ -1,5 +1,5 @@
 ---
-import { Icon } from 'astro-icon/components';
+import { Icon } from "astro-icon/components";
 const { currentPage, totalPages } = Astro.props;
 
 interface Props {
@@ -14,33 +14,43 @@ const disablePrevious = currentPage === 1;
 const disableNext = currentPage === totalPages;
 ---
 
-<div class="flex justify-center items-center gap-2 mt-2">
-  <a
-    href={`/blog?page=${previousPage}`}
-    class={`rounded-full p-2 ${
-      disablePrevious
-        ? 'bg-[#6482c2] text-white pointer-events-none'
-        : 'bg-indigo-100 hover:bg-[#6482c2] hover:text-white'
-    }`}
-  >
-    <Icon name="doubleArrowLeft" title="Предыдущая страница" size={20} />
-  </a>
+<div class="flex flex-col gap-2 mt-2 relative">
+  <!-- Основной блок пагинации (всегда по центру) -->
+  <div class="flex justify-center items-center gap-2">
+    <a
+      href={`/blog?page=${previousPage}`}
+      class={`rounded-full p-2 ${
+        disablePrevious
+          ? "bg-[#6482c2] text-white pointer-events-none"
+          : "bg-indigo-100 hover:bg-[#6482c2] hover:text-white"
+      }`}
+    >
+      <Icon name="doubleArrowLeft" title="Предыдущая страница" size={20} />
+    </a>
 
-  <a
-    href={`/blog?page=${currentPage}`}
-    class="rounded-full w-8 h-8 flex items-center justify-center bg-[#6482c2] text-white"
-  >
-    {currentPage}
-  </a>
+    <a
+      href={`/blog?page=${currentPage}`}
+      class="rounded-full w-8 h-8 flex items-center justify-center bg-[#6482c2] text-white"
+    >
+      {currentPage}
+    </a>
 
-  <a
-    href={`/blog?page=${nextPage}`}
-    class={`rounded-full p-2 ${
-      disableNext
-        ? 'bg-gray-100 text-gray-400 pointer-events-none'
-        : 'bg-indigo-100 hover:bg-[#6482c2] hover:text-white'
-    }`}
+    <a
+      href={`/blog?page=${nextPage}`}
+      class={`rounded-full p-2 ${
+        disableNext
+          ? "bg-gray-100 text-gray-400 pointer-events-none"
+          : "bg-indigo-100 hover:bg-[#6482c2] hover:text-white"
+      }`}
+    >
+      <Icon name="doubleArrowRight" title="Следующая страница" size={20} />
+    </a>
+  </div>
+
+  <!-- Текст "Страница блога" -->
+  <p
+    class="text-sm text-gray-300 text-center md:absolute md:right-0 md:top-1/2 md:-translate-y-1/2"
   >
-    <Icon name="doubleArrowRight" title="Следующая страница" size={20} />
-  </a>
+    Страница блога: {currentPage}
+  </p>
 </div>

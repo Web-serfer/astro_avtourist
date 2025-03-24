@@ -10,6 +10,8 @@ const navLinks = [
 
 const pathname = new URL(Astro.request.url).pathname;
 const currentPath = pathname === "/" ? "/" : pathname.slice(1);
+const navLinkColor = "text-[#adb0b1]";
+const navLinkColorHover = "hover:text-[--mainLinkColor-light]";
 ---
 
 <header
@@ -17,7 +19,6 @@ const currentPath = pathname === "/" ? "/" : pathname.slice(1);
 >
   <div class="container mx-auto px-2 sm:px-4">
     <div class="flex items-center justify-between md:h-12">
-      <!-- Логотип -->
       <a href="/" class="hidden sm:block" aria-label="Главная">
         <Image
           src="/logo.png"
@@ -31,7 +32,6 @@ const currentPath = pathname === "/" ? "/" : pathname.slice(1);
         />
       </a>
 
-      <!-- Навигация -->
       <nav class="w-full sm:w-auto">
         <ul
           class="flex justify-center sm:justify-end items-center gap-2 sm:gap-6 uppercase"
@@ -44,7 +44,7 @@ const currentPath = pathname === "/" ? "/" : pathname.slice(1);
                   class={`text-sm md:text-base ${
                     currentPath === link.url.slice(1)
                       ? "text-[--mainLinkColor-light] font-medium"
-                      : "text-[#adb0b1] hover:text-[--mainLinkColor-light]"
+                      : `${navLinkColor} ${navLinkColorHover}`
                   } transition-colors px-2 py-1 sm:px-0 sm:py-0`}
                   aria-current={
                     currentPath === link.url.slice(1) ? "page" : undefined
@@ -55,15 +55,13 @@ const currentPath = pathname === "/" ? "/" : pathname.slice(1);
               </li>
             ))
           }
-          <!-- Иконка поиска -->
           <li class="ml-2 sm:ml-4">
             <a
               href="/search"
-              class="text-[#adb0b1] hover:text-[--mainLinkColor-light] transition-colors"
+              class={`${navLinkColor} ${navLinkColorHover} transition-colors`}
               aria-label="Поиск по статьям"
               title="Поиск по статьям"
             >
-              <!-- search icon -->
               <Icon name="searchIcon" size={20} />
             </a>
           </li>
@@ -72,7 +70,6 @@ const currentPath = pathname === "/" ? "/" : pathname.slice(1);
     </div>
   </div>
 
-  <!-- Прогресс-бар -->
   <div
     id="scrollLine"
     class="h-[2px] bg-white absolute bottom-0 left-0 w-0 transition-[width] duration-300"

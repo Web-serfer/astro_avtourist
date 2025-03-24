@@ -15,14 +15,19 @@ const disableNext = currentPage === totalPages;
     <!-- Кнопка "Назад" -->
     <a
       href={`/blog?page=${previousPage}`}
-      class={`rounded-full p-2 transition-colors ${
+      class={`rounded-full p-2 transition-all duration-300 group ${
         disablePrevious
           ? "bg-[#6482c2] text-white cursor-default"
-          : "bg-indigo-100 hover:bg-[#6482c2] hover:text-white"
+          : "bg-indigo-100 hover:bg-[#6482c2] hover:text-white hover:animate-[bounceHorizontal_0.6s_ease-in-out]"
       }`}
       aria-disabled={disablePrevious}
     >
-      <Icon name="doubleArrowLeft" title="Предыдущая страница" size={20} />
+      <Icon
+        name="doubleArrowLeft"
+        title="Предыдущая страница"
+        size={20}
+        class="transform group-hover:scale-110 transition-transform duration-200"
+      />
     </a>
 
     <!-- Текущая страница -->
@@ -35,14 +40,19 @@ const disableNext = currentPage === totalPages;
     <!-- Кнопка "Вперед" -->
     <a
       href={`/blog?page=${nextPage}`}
-      class={`rounded-full p-2 transition-colors ${
+      class={`rounded-full p-2 transition-all duration-300 group ${
         disableNext
           ? "bg-gray-100 text-gray-400 cursor-default"
-          : "bg-indigo-100 hover:bg-[#6482c2] hover:text-white"
+          : "bg-indigo-100 hover:bg-[#6482c2] hover:text-white hover:animate-[bounceHorizontal_0.6s_ease-in-out]"
       }`}
       aria-disabled={disableNext}
     >
-      <Icon name="doubleArrowRight" title="Следующая страница" size={20} />
+      <Icon
+        name="doubleArrowRight"
+        title="Следующая страница"
+        size={20}
+        class="transform group-hover:scale-110 transition-transform duration-200"
+      />
     </a>
   </div>
 
@@ -53,3 +63,30 @@ const disableNext = currentPage === totalPages;
     Страница {currentPage} из {totalPages}
   </p>
 </div>
+
+<style is:global>
+  @keyframes bounceHorizontal {
+    0%,
+    100% {
+      transform: translateX(0);
+    }
+    25% {
+      transform: translateX(3px);
+    }
+    75% {
+      transform: translateX(-3px);
+    }
+  }
+  @keyframes bounceHorizontalReverse {
+    0%,
+    100% {
+      transform: translateX(0);
+    }
+    25% {
+      transform: translateX(-3px);
+    }
+    75% {
+      transform: translateX(3px);
+    }
+  }
+</style>

@@ -10,7 +10,6 @@ const disableNext = currentPage === totalPages;
 ---
 
 <div class="flex flex-col gap-2 mt-2 relative">
-  <!-- Центральная пагинация -->
   <div class="flex justify-center items-center gap-2">
     <!-- Кнопка "Назад" -->
     <a
@@ -18,19 +17,17 @@ const disableNext = currentPage === totalPages;
       class={`rounded-full p-2 transition-all duration-300 group ${
         disablePrevious
           ? "bg-[#6482c2] text-white cursor-default"
-          : "bg-indigo-100 hover:bg-[#6482c2] hover:text-white hover:animate-[bounceHorizontal_0.6s_ease-in-out]"
+          : "bg-indigo-100 hover:bg-[#6482c2] hover:text-white hover:animate-[bounceLeft_0.6s]"
       }`}
       aria-disabled={disablePrevious}
     >
       <Icon
         name="doubleArrowLeft"
-        title="Предыдущая страница"
         size={20}
         class="transform group-hover:scale-110 transition-transform duration-200"
       />
     </a>
 
-    <!-- Текущая страница -->
     <span
       class="rounded-full w-8 h-8 flex items-center justify-center bg-[#6482c2] text-white"
     >
@@ -43,29 +40,27 @@ const disableNext = currentPage === totalPages;
       class={`rounded-full p-2 transition-all duration-300 group ${
         disableNext
           ? "bg-gray-100 text-gray-400 cursor-default"
-          : "bg-indigo-100 hover:bg-[#6482c2] hover:text-white hover:animate-[bounceHorizontal_0.6s_ease-in-out]"
+          : "bg-indigo-100 hover:bg-[#6482c2] hover:text-white hover:animate-[bounceRight_0.6s]"
       }`}
       aria-disabled={disableNext}
     >
       <Icon
         name="doubleArrowRight"
-        title="Следующая страница"
         size={20}
         class="transform group-hover:scale-110 transition-transform duration-200"
       />
     </a>
   </div>
 
-  <!-- Подпись с номером страницы -->
   <p
-    class="text-sm text-gray-300 text-center md:absolute md:right-0 md:top-1/2 md:-translate-y-1/2 md:mr-2"
+    class="text-sm text-gray-300 text-center md:absolute md:right-0 md:top-1/2 md:-translate-y-1/2"
   >
     Страница {currentPage} из {totalPages}
   </p>
 </div>
 
 <style>
-  @keyframes bounceHorizontal {
+  @keyframes bounceLeft {
     0%,
     100% {
       transform: translateX(0);
@@ -77,7 +72,7 @@ const disableNext = currentPage === totalPages;
       transform: translateX(-3px);
     }
   }
-  @keyframes bounceHorizontalReverse {
+  @keyframes bounceRight {
     0%,
     100% {
       transform: translateX(0);

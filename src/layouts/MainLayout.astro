@@ -3,7 +3,6 @@ import "@styles/base/main.css";
 import BaseHead from "@components/home/BaseHead.astro";
 import Header from "@components/home/Header.astro";
 import Footer from "@components/home/Footer.astro";
-import YandexMetrika from "@components/base/YandexMetrika.astro";
 
 interface Props {
   title?: string;
@@ -22,7 +21,6 @@ const { title, description, canonical } = Astro.props;
       name="google-site-verification"
       content="AXZMh5crVx8zlMhcYUeLQOxVNVxlNEU0aTVMBZnWVfI"
     />
-    <!-- <YandexMetrika /> -->
   </head>
   <body>
     <Header />

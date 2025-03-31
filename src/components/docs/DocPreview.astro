@@ -12,19 +12,23 @@ const { title, href, alt } = Astro.props;
 >
   <!-- Левый блок (текст + иконка документа) -->
   <div class="flex items-center">
-    <Icon
-      name="docs"
-      size={22}
-      class="mr-3 opacity-80 group-hover:opacity-100 transition-opacity"
-    />
+    <div class="w-6 h-6 flex-shrink-0 mr-3">
+      <Icon
+        name="docs"
+        size="100%"
+        class="opacity-80 group-hover:opacity-100 transition-opacity"
+      />
+    </div>
     <p class="docs-title italic">
       {title}
     </p>
   </div>
 
   <!-- Правая иконка скачивания -->
-  <div class="opacity-80 group-hover:opacity-100 transition-opacity">
-    <Icon name="download" size={20} aria-hidden="true" />
+  <div
+    class="w-5 h-5 flex-shrink-0 opacity-80 group-hover:opacity-100 transition-opacity"
+  >
+    <Icon name="download" size="100%" aria-hidden="true" />
     <span class="sr-only">Скачать</span>
   </div>
 </a>

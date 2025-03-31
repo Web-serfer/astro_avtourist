@@ -2,22 +2,14 @@
 import { getCurrentYear } from "../../utils";
 ---
 
-<footer class="bg-[#18191a] py-2 mt-8 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1),0_-2px_4px_-1px_rgba(0,0,0,0.06)]">
-  <div class="container max-w-[800px] mx-auto flex justify-center items-center gap-16 max-[550px]:flex-col max-[550px]:gap-4">
+<footer
+  class="bg-[#18191a] py-2 mt-8 bottom-0 shadow-[0_-2px_10px_rgba(255,255,255,0.2)] z-40"
+>
+  <div
+    class="container max-w-[800px] mx-auto flex justify-center items-center gap-16 max-[550px]:flex-col max-[550px]:gap-4"
+  >
     <span class="text-[#adb0b1] max-[550px]:order-2">
       2022 - {getCurrentYear()} © Автоюрист Сургут
     </span>
-    <!-- <a 
-      class="ftbanner max-[550px]:order-1" 
-      href="#" 
-      target="_blank">
-        <img
-          src={banner}
-          border="0"
-          alt="#"          
-          width="88"
-          height="31"
-        />
-    </a> -->
   </div>
 </footer>

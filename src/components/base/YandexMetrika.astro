@@ -1,3 +1,4 @@
+<!-- Yandex.Metrika counter -->
 <script is:inline type="text/partytown">
   (function (m, e, t, r, i, k, a) {
     m[i] =
@@ -6,27 +7,16 @@
         (m[i].a = m[i].a || []).push(arguments);
       };
     m[i].l = 1 * new Date();
-
-    // Упрощенная проверка без return
-    var shouldLoad = true;
-    try {
-      for (var j = 0; j < document.scripts.length; j++) {
-        if (document.scripts[j].src === r) {
-          shouldLoad = false;
-          break;
-        }
+    for (var j = 0; j < document.scripts.length; j++) {
+      if (document.scripts[j].src === r) {
+        return;
       }
-    } catch (e) {
-      shouldLoad = true;
     }
-
-    if (shouldLoad) {
-      (k = e.createElement(t)),
-        (a = e.getElementsByTagName(t)[0]),
-        (k.async = 1),
-        (k.src = r),
-        a.parentNode.insertBefore(k, a);
-    }
+    (k = e.createElement(t)),
+      (a = e.getElementsByTagName(t)[0]),
+      (k.async = 1),
+      (k.src = r),
+      a.parentNode.insertBefore(k, a);
   })(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
 
   ym(100701585, "init", {
@@ -35,7 +25,6 @@
     accurateTrackBounce: true,
   });
 </script>
-
 <noscript
   ><div>
     <img
